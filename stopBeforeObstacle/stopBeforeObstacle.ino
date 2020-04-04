@@ -37,7 +37,9 @@ void checkObstacle(){
     //Where the distance is < 1m it outputs 0.
     //Else we stop the car.
     
-    if(front_sensor.getDistance() > 25 || front_sensor.getDistance() == 0){
+    int distance = front_sensor.getDistance();
+    
+    if(distance > 25 || distance == 0){
     
     car.setSpeed(1);
 
