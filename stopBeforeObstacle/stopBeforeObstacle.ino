@@ -57,7 +57,7 @@ void decreaseSpeed(){
       car.setAngle(getAngle();
 
       else(car.setSpeed(0);
-      car.setAngle(0)
+      car.setAngle(0);
     }
   }
 }
