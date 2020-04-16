@@ -81,3 +81,55 @@ void handleInput() { //handle serial input if there is any
     car.setAngle(0);}
   }
 }
+
+void automatedControl(){
+  
+  if(nu == false){
+    car.setSpeed(1);
+        car.setAngle(0);
+    while(front_sensor.getDistance() > 0 && front_sensor.getDistance() < 35){
+           int degrees = 90;
+          float speed = 1;
+          speed = smartcarlib::utils::getAbsolute(speed);
+    degrees %= 360; 
+    if (degrees == 0)
+    {
+        return;
+    }
+
+    car.setSpeed(speed);
+    if (degrees > 0)
+    {
+        car.setAngle(90);
+    }
+    else
+    {
+        car.setAngle(-90);
+    }
+
+    const auto initialHeading    = car.getHeading();
+    bool hasReachedTargetDegrees = false;
+    while (!hasReachedTargetDegrees)
+    {
+        car.update();
+        auto currentHeading = car.getHeading();
+        if (degrees < 0 && currentHeading > initialHeading)
+        {
+            
+            currentHeading -= 360;
+        }
+        else if (degrees > 0 && currentHeading < initialHeading)
+        {
+            
+            currentHeading += 360;
+        }
+        
+        int degreesTurnedSoFar  = initialHeading - currentHeading;
+        hasReachedTargetDegrees = smartcarlib::utils::getAbsolute(degreesTurnedSoFar)
+                                  >= smartcarlib::utils::getAbsolute(degrees);
+    }
+
+    car.setSpeed(0);
+    }
+  }
+}
