@@ -50,6 +50,22 @@ void checkObstacle(){
   }
 }
 
+void decreaseSpeed(){
+  if(front_sensor.getDistance()<30){
+    if(bluetooth.available() {
+      car.setSpeed(getSpeed() - .1);
+      car.setAngle(getAngle();
+
+      else(car.setSpeed(0);
+      car.setAngle(0)
+    }
+  }
+}
+
+
+
+
+
 void handleInput() { //handle serial input if there is any
   if (bluetooth.available()) {
     if (front_sensor.getDistance()>30){
