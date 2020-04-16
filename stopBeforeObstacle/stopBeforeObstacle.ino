@@ -62,10 +62,6 @@ void decreaseSpeed(){
   }
 }
 
-
-
-
-
 void handleInput() { //handle serial input if there is any
   if (bluetooth.available()) {
     if (front_sensor.getDistance()>30){
@@ -88,6 +84,10 @@ void handleInput() { //handle serial input if there is any
         car.setSpeed(-100);
         car.setAngle(0);
         break;
+       case 'd':
+        decreaseSpeed();
+         break;
+         
       default: //if you receive something that you don't know, just stop
         car.setSpeed(0);
         car.setAngle(0);
