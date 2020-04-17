@@ -48,6 +48,9 @@ void handleInput() { //handle serial input if there is any
     char input;
     while (bluetooth.available()) { input = bluetooth.read(); }; //read till last character
     switch (input) {
+        case 'w': //increase speed
+        car.setSpeed(getSpeed() + .1); //add 5% of current speed
+        break;
       case 'l': //rotate counter-clockwise going forward
         car.setSpeed(1); //80% of the full speed
         car.setAngle(-75); //75 degrees to the left
