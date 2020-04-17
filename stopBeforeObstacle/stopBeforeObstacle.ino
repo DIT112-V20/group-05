@@ -50,17 +50,7 @@ void checkObstacle(){
   }
 }
 
-void decreaseSpeed(){
-  if(front_sensor.getDistance()<30){
-    if(bluetooth.available() {
-      car.setSpeed(getSpeed() - .1);
-      car.setAngle(getAngle();
 
-      else(car.setSpeed(0);
-      car.setAngle(0);
-    }
-  }
-}
 
 void handleInput() { //handle serial input if there is any
   if (bluetooth.available()) {
@@ -84,8 +74,10 @@ void handleInput() { //handle serial input if there is any
         car.setSpeed(-100);
         car.setAngle(0);
         break;
-       case 'd':
-        decreaseSpeed();
+       case 'd'://decrease method
+        car.setSpeed(getSpeed() - .1);
+        car.setAngle(getAngle();
+
          break;
          
       default: //if you receive something that you don't know, just stop
