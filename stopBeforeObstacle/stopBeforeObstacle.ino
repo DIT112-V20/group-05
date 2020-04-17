@@ -41,6 +41,8 @@ void loop()
 
 
 
+
+
 void handleInput() { //handle serial input if there is any
   if (bluetooth.available()) {
     char input;
@@ -79,6 +81,12 @@ void handleInput() { //handle serial input if there is any
       nu = false;
      
         break;
+       case 'd'://decrease Speed 
+        car.setSpeed(getSpeed() - .1);
+        car.setAngle(getAngle();
+
+         break;
+         
       default: //if you receive something that you don't know, just stop
         car.setSpeed(0);
         car.setAngle(0);
