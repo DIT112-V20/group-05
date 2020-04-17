@@ -74,7 +74,7 @@ void handleInput() { //handle serial input if there is any
         car.setSpeed(-100);
         car.setAngle(0);
         break;
-       case 'd'://decrease method
+       case 'd'://decrease Speed 
         car.setSpeed(getSpeed() - .1);
         car.setAngle(getAngle();
 
