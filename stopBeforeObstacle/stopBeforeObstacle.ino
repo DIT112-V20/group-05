@@ -34,7 +34,7 @@ void setup()
 void loop()
 {
     car.update();
-    handleInput();
+    manualControlling();
     checkObstacle();
     automatedControl();
 }
@@ -43,7 +43,7 @@ void loop()
 
 
 
-void handleInput() { //handle serial input if there is any
+void manualControlling() { //handle serial input if there is any
   if (bluetooth.available()) {
     char input;
     float speedPMPS;
