@@ -46,53 +46,46 @@ void loop()
 void handleInput() { //handle serial input if there is any
   if (bluetooth.available()) {
     char input;
+    float speedPMPS;
     while (bluetooth.available()) { input = bluetooth.read(); }; //read till last character
     switch (input) {
-        case 'w': //increase speed
-        car.setSpeed(getSpeed() + .1); //add 5% of current speed
+      
+       case 'w': //increase speed
+        speedPMPS = car.getSpeed() + 0.3;
+        car.setSpeed(speedPMPS);
         break;
-      case 'l': //rotate counter-clockwise going forward
-        car.setSpeed(1); //80% of the full speed
-        car.setAngle(-75); //75 degrees to the left
+
+              
+      case 'b'://decrease Speed 
+        speedPMPS = car.getSpeed() - 0.3;
+        car.setSpeed(speedPMPS);
         break;
+        
+      case 'l': 
+        car.setAngle(-50);
+        break;
+        
       case 'r': //turn clock-wise
-        car.setSpeed(1);
-        car.setAngle(75);  //75 to the right
+        car.setAngle(50);  //75 to the right
         break;
-      case 'f': //go ahead
-        car.setSpeed(1);
-        car.setAngle(0);
-        break;
-      case 'b': //go back
-        car.setSpeed(-1);
-        car.setAngle(0);
-        break;
+
       case 's': //stop
-        car.setSpeed(0);
+        speedPMPS = 0;
+        car.setSpeed(speedPMPS);
         car.setAngle(0);
         nu = true;
         break;
-      case 'i': //increase speed
 
-        break;
-      case 'd': //decrease speed
-
-        break;
       case 'a': //automated mode
-      car.setSpeed(1);
-      car.setAngle(0);
-      nu = false;
-     
+        speedPMPS = 1;
+        car.setSpeed(speedPMPS);
+        car.setAngle(0);
+        nu = false;
         break;
-       case 'd'://decrease Speed 
-        car.setSpeed(getSpeed() - .1);
-        car.setAngle(getAngle();
-
-         break;
          
       default: //if you receive something that you don't know, just stop
-        car.setSpeed(0);
         car.setAngle(0);
+        break;
     }
   }
 }
@@ -153,7 +146,6 @@ void checkObstacle(){
     int distance = front_sensor.getDistance();
     
     if(distance > 0 && distance < 25){
-   
-    car.setSpeed(0);
+      car.setSpeed(0);
   }
 }
