@@ -1,3 +1,6 @@
+#ifndef WEBSERVER_H
+#define WEBSERVER_H
+
 #include <WiFi.h>
 
 /*
@@ -19,3 +22,5 @@ String header;
 
 void webserverInit();
 void webserverCreation();
+
+#endif
