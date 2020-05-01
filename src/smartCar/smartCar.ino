@@ -1,6 +1,9 @@
 #include <Smartcar.h>
 #include <BluetoothSerial.h>
 
+//Include the webserver file
+#include "Webserver.h"
+
 BluetoothSerial bluetooth;
 
 boolean nu = true;
@@ -29,6 +32,9 @@ void setup()
     bluetooth.begin("SMARTCAR");
     Serial.begin(9600);
     car.enableCruiseControl();
+
+    //Setup the webserver
+    webserverInit();
 }
 
 void loop()
@@ -37,6 +43,10 @@ void loop()
     manualControlling();
     checkObstacle();
     automatedControl();
+
+    //Loop the webserver creation
+    //Which is the same code that would have been in the loop if webserver was a .ino file.
+    webserverCreation();
 }
 
 
