@@ -1,23 +1,10 @@
 #ifndef WEBSERVER_H
 #define WEBSERVER_H
 
-#include <WiFi.h>
-
 /*
-*
-* VARIABLES
-*
-*/
 
-const char* ssid;
-const char* password;
-WiFiServer server;
-String header;
+  FUNCTIONS
 
-/*
-*
-* FUNCTIONS
-*
 */
 
 void webserverInit();
