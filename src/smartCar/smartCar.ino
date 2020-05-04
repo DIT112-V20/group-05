@@ -30,7 +30,7 @@ SmartCar car(control, gyroscope, leftOdometer, rightOdometer);
 void setup()
 {
     //bluetooth.begin("SMARTCAR");
-    Serial.begin(9600);
+    Serial.begin(115200);
     car.enableCruiseControl();
 
     //Setup the webserver
@@ -40,7 +40,7 @@ void setup()
 void loop()
 {
     car.update();
-    manualControlling();
+//    manualControlling();
     checkObstacle();
     automatedControl();
 
@@ -53,11 +53,11 @@ void loop()
 
 
 
-void manualControlling() { //handle serial input if there is any
+/*void manualControlling() { //handle serial input if there is any
   if (client.available()) {
     char input;
     float speedPMPS;
-    input = client.read(); }; //read till last character
+    input = client.read(); //read till last character
     switch (input) {
       
        case 'w': //increase speed
@@ -98,7 +98,7 @@ void manualControlling() { //handle serial input if there is any
         break;
     }
   }
-}
+}*/
 
 void automatedControl(){
   

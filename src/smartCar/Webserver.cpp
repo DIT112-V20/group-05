@@ -7,14 +7,14 @@
 #include "Webserver.h"
 #include <WiFi.h>
 #include <WiFiServer.h>
+#include <ESPmDNS.h>
 
-const char* ssid = "ENTER_YOUR_WIFI_SSID";
-const char* password = "ENTER_YOUR_WIFI_PASSWORD";
-WiFiServer server(80);
+const char* ssid = "CHANGE_TO_YOUR_SSID";
+const char* password = "CHANGE_TO_YOUR_SSID_PASSWORD";
+WiFiServer server(12345);
 String header;
 
 void webserverInit() {
-  Serial.begin(115200);
 
   //Connect to Wi-Fi
   Serial.print("Connecting to: ");
@@ -23,6 +23,13 @@ void webserverInit() {
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
+  }
+
+  if(!MDNS.begin("Smartcar")){
+    Serial.println("Error! mDNS Responder not set up!");
+    while(1){
+      delay(1000);
+    }
   }
 
   //Print local IP address to the serial monitor and start the web server
