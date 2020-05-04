@@ -4,7 +4,7 @@
 //Include the webserver file
 #include "Webserver.h"
 
-BluetoothSerial bluetooth;
+//BluetoothSerial bluetooth;
 
 boolean nu = true;
 
@@ -29,7 +29,7 @@ SmartCar car(control, gyroscope, leftOdometer, rightOdometer);
 
 void setup()
 {
-    bluetooth.begin("SMARTCAR");
+    //bluetooth.begin("SMARTCAR");
     Serial.begin(9600);
     car.enableCruiseControl();
 
@@ -54,10 +54,10 @@ void loop()
 
 
 void manualControlling() { //handle serial input if there is any
-  if (bluetooth.available()) {
+  if (client.available()) {
     char input;
     float speedPMPS;
-    while (bluetooth.available()) { input = bluetooth.read(); }; //read till last character
+    input = client.read(); }; //read till last character
     switch (input) {
       
        case 'w': //increase speed
