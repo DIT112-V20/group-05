@@ -10,8 +10,6 @@
     android:background="#F7292E37"
     tools:context=".ManualActivity2">
 
-
-
     <ImageButton
         android:id="@+id/back3"
         android:layout_width="46dp"
@@ -50,20 +48,6 @@
 
 
     <Button
-        android:id="@+id/switchtomanual"
-        android:layout_width="378dp"
-        android:layout_height="81dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginLeft="18dp"
-
-        android:background="@drawable/colorchange"
-        android:rotation="0"
-        android:text="@string/toManual"
-        android:textAllCaps="false"
-        android:textColor="#BB070707"
-        android:textSize="25dp" />
-
-    <Button
         android:id="@+id/TempButtonWarning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,6 +62,20 @@
         android:layout_marginEnd="110dp"
         android:layout_marginRight="110dp"
         android:text="TempButtonWarning" />
+
+    <Button
+        android:id="@+id/switchtomanual"
+        android:layout_width="378dp"
+        android:layout_height="81dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="500dp"
+
+        android:background="@drawable/colorchange"
+        android:rotation="0"
+        android:text="@string/toManual"
+        android:textAllCaps="false"
+        android:textColor="#BB070707"
+        android:textSize="25dp" />
 
 
     />

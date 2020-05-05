@@ -23,11 +23,6 @@ class activity_automatic : AppCompatActivity() {
         val tempButton = findViewById(R.id.TempButtonWarning) as Button
 
 
-        tempButton.setOnClickListener {
-            val pop = Intent(this, PopUpObstacle::class.java)
-            startActivity(pop)
-        }
-
 
 // this gets the signal from the menu
 
@@ -39,6 +34,27 @@ class activity_automatic : AppCompatActivity() {
             }
             return 109 // default
         }
+
+
+
+
+        fun ok () {
+            val intentforward = Intent(this, ManualActivity2::class.java)
+            intentforward.putExtra("SecondVariable", getMyVariable2())
+            startActivity(intentforward)
+        }
+
+        tempButton.setOnClickListener {
+            val builder = AlertDialog.Builder(this@activity_automatic, R.style.Theme_AppCompat_DayNight_Dialog_Alert)
+            builder.setTitle("Obstacle Avoided")
+            builder.setMessage("The car just avoided hitting an obstacle. \n Maneuver around it using Manual Mode")
+            builder.setPositiveButton("To Manual Mode") { dialog, which ->
+                ok()   }
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+        }
+
+
 
 
 // this gets the signal from the menu
@@ -54,11 +70,7 @@ class activity_automatic : AppCompatActivity() {
 
 
 
-        fun ok () {
-                val intentforward = Intent(this, ManualActivity2::class.java)
-                intentforward.putExtra("SecondVariable", getMyVariable2())
-                startActivity(intentforward)
-        }
+
 
         alertbutton.setOnClickListener {
             val builder = AlertDialog.Builder(this@activity_automatic)
