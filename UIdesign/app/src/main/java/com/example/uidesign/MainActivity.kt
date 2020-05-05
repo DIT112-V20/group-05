@@ -64,8 +64,9 @@ class MainActivity : AppCompatActivity() {
 
 
                     val intent = Intent(this, MainActivity::class.java)
-                    Toast.makeText(this@MainActivity, "You must connect", Toast.LENGTH_SHORT).show()
-
+                    val toast = Toast.makeText(this@MainActivity, "You must connect first", Toast.LENGTH_SHORT)
+                        toast.setGravity(Gravity.TOP, 0,950)
+                    toast.show()
                 }
 
             }
@@ -74,8 +75,9 @@ class MainActivity : AppCompatActivity() {
 
         start.setOnClickListener{
             if(getMyVariableAgain()!=1) {
-                Toast.makeText(this@MainActivity, "You must connect", Toast.LENGTH_SHORT).show()
-            }else{
+                val toast = Toast.makeText(this@MainActivity, "You must connect first", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.TOP, 0,950)
+                toast.show()            }else{
                     if (connectBackround == 2 && offapp == 1) {
 
                         button_change.setBackgroundResource(R.drawable.transparent);
@@ -88,8 +90,9 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
 
                     } else{
-                        Toast.makeText(this@MainActivity, "You must connect", Toast.LENGTH_SHORT).show()
-
+                        val toast = Toast.makeText(this@MainActivity, "You must connect first", Toast.LENGTH_SHORT)
+                        toast.setGravity(Gravity.TOP, 0,950)
+                        toast.show()
                     }
 
 

@@ -9,6 +9,8 @@
     <string name="Automatic">Automatic Drive</string>
     <string name="Statistics">Statistics</string>
     <string name="SwitchAuto">Switch to Automatic Mode</string>
+    <string name="toManual">Switch to Manual Mode</string>
+
 
 
 </resources>
