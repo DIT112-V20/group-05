@@ -1,5 +1,6 @@
 package com.example.uidesign
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,13 +10,15 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_manual2.*
 
 
-class ManualActivity2 : AppCompatActivity() {
+class ManualActivityLink : AppCompatActivity() {
 
+    @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_manual2)
+        setContentView(R.layout.activity_manual_link)
 
-        fun getMyVariable(): Int {
+// this gets the signal from the automatic
+        fun getMyVariable3(): Int {
             if (intent != null) {
                 if (intent.extras != null) {
                     return intent.extras!!.getInt("SecondVariable")
@@ -24,7 +27,28 @@ class ManualActivity2 : AppCompatActivity() {
             return 109 // default
         }
 
-        fun getMyVariablefromAuto(): Int {
+        // this will give the link to automatic
+
+        val manuallink = findViewById<Button>(R.id.back5)
+
+        manuallink.setOnClickListener {
+            val intent2 = Intent(this, ManualActivityLink::class.java)
+            intent2.putExtra("fromManualLink", 1)
+            startActivity(intent2)
+        }
+
+
+        // this will get the signal from manual link
+        fun getMyVariableback(): Int {
+            if (intent != null) {
+                if (intent.extras != null) {
+                    return intent.extras!!.getInt("BackVariable1")
+                }
+            }
+            return 109 // default
+        }
+
+        fun getMyVariablefromAuto2(): Int {
             if (intent != null) {
                 if (intent.extras != null) {
                     return intent.extras!!.getInt("VariablefromaAuto")
@@ -33,15 +57,14 @@ class ManualActivity2 : AppCompatActivity() {
             return 109 // default
         }
 
-        // this gives the signal to menu
 
         val go_back2 = findViewById(R.id.back2) as ImageButton
 
         go_back2.setOnClickListener {
-            val intentback = Intent(this, MenuActivity::class.java)
-            intentback.putExtra("BackVariable1", getMyVariable())
-             startActivity(intentback)
-            }
+            val intentback = Intent(this, activity_automatic::class.java)
+            intentback.putExtra("BackVariable3", getMyVariable3())
+            startActivity(intentback)
+        }
 
 
 
@@ -115,53 +138,54 @@ class ManualActivity2 : AppCompatActivity() {
         }
 
 
-            button_change2.setOnClickListener {
-                if (gear2background == 2) {
-                    button_change2.setBackgroundResource(R.drawable.chosengear);
-                    gear2background = 1;
-                    if (gear1background == 1 || gear3background == 1) {
-                        button_change.setBackgroundResource(R.drawable.gears);
-                        gear1background = 2;
-                        button_change3.setBackgroundResource(R.drawable.gears);
-                        gear3background = 2;
+        button_change2.setOnClickListener {
+            if (gear2background == 2) {
+                button_change2.setBackgroundResource(R.drawable.chosengear);
+                gear2background = 1;
+                if (gear1background == 1 || gear3background == 1) {
+                    button_change.setBackgroundResource(R.drawable.gears);
+                    gear1background = 2;
+                    button_change3.setBackgroundResource(R.drawable.gears);
+                    gear3background = 2;
 
-                    }
+                }
+            }
+        }
+
+
+        button_change3.setOnClickListener {
+            if (gear3background == 2) {
+                button_change3.setBackgroundResource(R.drawable.chosengear);
+                gear3background = 1;
+                if (gear2background == 1 || gear1background == 1) {
+                    button_change2.setBackgroundResource(R.drawable.gears);
+                    gear2background = 2;
+                    button_change.setBackgroundResource(R.drawable.gears);
+                    gear1background = 2;
+
                 }
             }
 
 
-                button_change3.setOnClickListener {
-                    if (gear3background == 2) {
-                        button_change3.setBackgroundResource(R.drawable.chosengear);
-                        gear3background = 1;
-                        if (gear2background == 1 || gear1background == 1) {
-                            button_change2.setBackgroundResource(R.drawable.gears);
-                            gear2background = 2;
-                            button_change.setBackgroundResource(R.drawable.gears);
-                            gear1background = 2;
-
-                        }
-                    }
+        }
 
 
-                }
 
-
-        if(getMyVariable()==1) {
+        if(getMyVariable3()==1) {
 
             var menuchange = findViewById(R.id.onoff3) as Button;
             menuchange.setBackgroundResource(R.drawable.transparent);
         }
 
 
-        if(getMyVariablefromAuto()==1) {
+        if(getMyVariablefromAuto2()==1) {
 
             var menuchange = findViewById(R.id.onoff3) as Button;
             menuchange.setBackgroundResource(R.drawable.transparent);
         }
 
 
-
-        }
 
     }
+
+}
