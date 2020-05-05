@@ -1,4 +1,4 @@
-package com.example.uidesign
+package com.example.uieric
 
 import android.content.Intent
 import android.graphics.Color
@@ -20,6 +20,13 @@ class activity_automatic : AppCompatActivity() {
 
 
         val alertbutton = findViewById(R.id.switchtomanual) as Button
+        val tempButton = findViewById(R.id.TempButtonWarning) as Button
+
+
+        tempButton.setOnClickListener {
+            val pop = Intent(this, PopUpObstacle::class.java)
+            startActivity(pop)
+        }
 
 
 // this gets the signal from the menu
