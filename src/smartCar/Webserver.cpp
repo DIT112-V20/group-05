@@ -9,12 +9,14 @@
 #include <WiFiServer.h>
 #include <ESPmDNS.h>
 
+//VARIABLES
 const char* ssid = "CHANGE_TO_YOUR_SSID";
 const char* password = "CHANGE_TO_YOUR_SSID_PASSWORD";
 WiFiServer server(12345);
 WiFiClient client;
 String header;
 
+//INITIALIZE THE WEBSERVER
 void webserverInit() {
 
   //Connect to Wi-Fi
@@ -26,6 +28,7 @@ void webserverInit() {
     Serial.print(".");
   }
 
+  //mDNS - might not work as it is suppose to because of port other than 80.
   if(!MDNS.begin("Smartcar")){
     Serial.println("Error! mDNS Responder not set up!");
     while(1){
@@ -41,6 +44,7 @@ void webserverInit() {
   server.begin();
 }
 
+//CREATE AND UPDATE THE WEBSERVER
 void webserverCreation() {
   client = server.available();   // Listen for incoming clients
 

@@ -4,30 +4,35 @@
 //Include the webserver file
 #include "Webserver.h"
 
+//MANUAL (true) OR AUTOMATIC (false) MODE
 boolean nu = true;
 
+//PINS
 const int FRONT_TRIGGER_PIN = 4; 
 const int FRONT_ECHO_PIN = 2; 
+
+//SMARTCAR VARIABLES
 const unsigned int FRONT_MAX_DISTANCE = 100;
 SR04 front_sensor(FRONT_TRIGGER_PIN, FRONT_ECHO_PIN, FRONT_MAX_DISTANCE);
-
 BrushedMotor leftMotor(smartcarlib::pins::v2::leftMotorPins);
 BrushedMotor rightMotor(smartcarlib::pins::v2::rightMotorPins);
 DifferentialControl control(leftMotor, rightMotor);
-
 GY50 gyroscope(37);
 const auto pulsesPerMeter = 600;
-
 DirectionlessOdometer leftOdometer(
     smartcarlib::pins::v2::leftOdometerPin, []() { leftOdometer.update(); }, pulsesPerMeter);
 DirectionlessOdometer rightOdometer(
     smartcarlib::pins::v2::rightOdometerPin, []() { rightOdometer.update(); }, pulsesPerMeter);
 
+//INITIALIZE THE SMARTCAR
 SmartCar car(control, gyroscope, leftOdometer, rightOdometer);
 
 void setup()
 {
+    //Set the baudrate
     Serial.begin(115200);
+
+    //The speed of the car is in m/s.
     car.enableCruiseControl();
 
     //Setup the webserver
@@ -41,62 +46,67 @@ void loop()
     checkObstacle();
     automatedControl();
 
-    //Loop the webserver creation
-    //Which is the same code that would have been in the loop if webserver was a .ino file.
+    //Update the webserver
     webserverCreation();
 }
 
-
-
-
-
-void manualControlling() { //handle serial input if there is any
+//Manual controller (WIP - Work in Progress)
+void manualControlling() {
   if (client.available()) {
+    
     char input;
     float speedPMPS;
-    input = client.read(); //read till last character
+    input = client.read();
+    
     switch (input) {
-      
-       case 'w': //increase speed
+
+      //Increase the speed
+       case 'w':
         speedPMPS = car.getSpeed() + 0.3;
         car.setSpeed(speedPMPS);
         break;
 
-              
-      case 'b'://decrease Speed 
+      //Decrease the speed
+      case 'b':
         speedPMPS = car.getSpeed() - 0.3;
         car.setSpeed(speedPMPS);
         break;
-        
+
+      //Turn left
       case 'l': 
         car.setAngle(-50);
         break;
-        
-      case 'r': //turn clock-wise
-        car.setAngle(50);  //75 to the right
+
+      //Turn right
+      case 'r':
+        car.setAngle(50);
         break;
 
-      case 's': //stop
+      //Stop the car
+      case 's':
         speedPMPS = 0;
         car.setSpeed(speedPMPS);
         car.setAngle(0);
         nu = true;
         break;
 
-      case 'a': //automated mode
+      //Automate the car
+      case 'a':
         speedPMPS = 1;
         car.setSpeed(speedPMPS);
         car.setAngle(0);
         nu = false;
         break;
-         
-      default: //if you receive something that you don't know, just stop
+
+      //Reset angle
+      default:
         car.setAngle(0);
         break;
     }
   }
 }
 
+//Automated controls (WIP - Work in Progress)
 void automatedControl(){
   
   if(nu == false){
@@ -149,6 +159,7 @@ void automatedControl(){
   }
 }
 
+//Check for an obstacle
 void checkObstacle(){
     int distance = front_sensor.getDistance();
     
