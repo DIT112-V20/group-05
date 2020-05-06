@@ -40,7 +40,7 @@ void setup()
 void loop()
 {
     car.update();
-//    manualControlling();
+    manualControlling();
     checkObstacle();
     automatedControl();
 
@@ -53,7 +53,7 @@ void loop()
 
 
 
-/*void manualControlling() { //handle serial input if there is any
+void manualControlling() { //handle serial input if there is any
   if (client.available()) {
     char input;
     float speedPMPS;
@@ -98,7 +98,7 @@ void loop()
         break;
     }
   }
-}*/
+}
 
 void automatedControl(){
   

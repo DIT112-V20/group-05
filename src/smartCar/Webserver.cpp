@@ -12,6 +12,7 @@
 const char* ssid = "CHANGE_TO_YOUR_SSID";
 const char* password = "CHANGE_TO_YOUR_SSID_PASSWORD";
 WiFiServer server(12345);
+WiFiClient client;
 String header;
 
 void webserverInit() {
@@ -41,7 +42,7 @@ void webserverInit() {
 }
 
 void webserverCreation() {
-  WiFiClient client = server.available();   // Listen for incoming clients
+  client = server.available();   // Listen for incoming clients
 
   if (client) {                             // If a new client connects,
     Serial.println("New Client.");          // print a message out in the serial port
