@@ -4,8 +4,6 @@
 //Include the webserver file
 #include "Webserver.h"
 
-//BluetoothSerial bluetooth;
-
 boolean nu = true;
 
 const int FRONT_TRIGGER_PIN = 4; 
@@ -29,7 +27,6 @@ SmartCar car(control, gyroscope, leftOdometer, rightOdometer);
 
 void setup()
 {
-    //bluetooth.begin("SMARTCAR");
     Serial.begin(115200);
     car.enableCruiseControl();
 
