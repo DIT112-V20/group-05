@@ -1,4 +1,4 @@
-package com.example.uidesign
+package com.example.uieric
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -64,8 +64,9 @@ class MainActivity : AppCompatActivity() {
 
 
                     val intent = Intent(this, MainActivity::class.java)
-                    Toast.makeText(this@MainActivity, "You must connect", Toast.LENGTH_SHORT).show()
-
+                    val toast = Toast.makeText(this@MainActivity, "You must connect first", Toast.LENGTH_SHORT)
+                        toast.setGravity(Gravity.TOP, 0,800)
+                    toast.show()
                 }
 
             }
@@ -74,22 +75,24 @@ class MainActivity : AppCompatActivity() {
 
         start.setOnClickListener{
             if(getMyVariableAgain()!=1) {
-                Toast.makeText(this@MainActivity, "You must connect", Toast.LENGTH_SHORT).show()
-            }else{
+                val toast = Toast.makeText(this@MainActivity, "You must connect first", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.TOP, 0,800)
+                toast.show()            }else{
                     if (connectBackround == 2 && offapp == 1) {
 
                         button_change.setBackgroundResource(R.drawable.transparent);
                         btn_click_me = findViewById(R.id.getstarted) as Button
 
 
-                        val intent = Intent(this, MenuActivity::class.java)
+                        val intent = Intent(this, MenuActivity::clsass.java)
 
                         intent.putExtra("FirstVariable", offapp)
                         startActivity(intent)
 
                     } else{
-                        Toast.makeText(this@MainActivity, "You must connect", Toast.LENGTH_SHORT).show()
-
+                        val toast = Toast.makeText(this@MainActivity, "You must connect first", Toast.LENGTH_SHORT)
+                        toast.setGravity(Gravity.TOP, 0,800)
+                        toast.show()
                     }
 
 

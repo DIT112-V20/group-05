@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.uidesign">
+    package="com.example.uieric">
 
     <application
         android:allowBackup="true"
@@ -9,7 +8,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ManualActivity2"></activity>
+        <activity android:name=".PopUpObstacle"></activity>
+        <activity android:name=".ManualActivityLink"></activity>
+        <activity android:name=".activity_automatic" />
+        <activity android:name=".ManualActivity2" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -19,5 +21,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

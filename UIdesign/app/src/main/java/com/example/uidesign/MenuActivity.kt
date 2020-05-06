@@ -1,4 +1,4 @@
-package com.example.uidesign
+package com.example.uieric
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_menu.*
 
 
 class MenuActivity : AppCompatActivity() {
@@ -30,6 +31,8 @@ class MenuActivity : AppCompatActivity() {
             }
             return 109 // default
         }
+
+        // this gets the signal from manual
 
         fun getMyVariableback(): Int {
             if (intent != null) {
@@ -75,11 +78,23 @@ class MenuActivity : AppCompatActivity() {
 
 
 
+// this gives the signal to manual
 
         manual.setOnClickListener {
 
 
             val intent2 = Intent(this, ManualActivity2::class.java)
+            intent2.putExtra("SecondVariable", finalresult)
+            startActivity(intent2)
+        }
+
+
+// this gives the signal to automatic
+
+        automatic.setOnClickListener {
+
+
+            val intent2 = Intent(this, activity_automatic::class.java)
             intent2.putExtra("SecondVariable", finalresult)
             startActivity(intent2)
         }
