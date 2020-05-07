@@ -27,7 +27,7 @@ class activity_automatic : AppCompatActivity() {
         val destinationView = findViewById<TextView>(R.id.DestinationTextView)
         submitButton.setOnClickListener {
             destinationView.setText(number.text)
-
+        }
 
 // this gets the signal from the menu
 
@@ -119,4 +119,3 @@ class activity_automatic : AppCompatActivity() {
 
         }
     }
-}
