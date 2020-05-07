@@ -21,7 +21,6 @@ class activity_automatic : AppCompatActivity() {
 
 
         val imageButton = findViewById<ImageButton>(R.id.back3)
-        val destination = findViewById<TextView>(R.id.TextViewDestination)
         val number = findViewById<EditText>(R.id.editTextNumber)
         val submitButton = findViewById<Button>(R.id.submitButton)
         val destinationView = findViewById<TextView>(R.id.DestinationTextView)

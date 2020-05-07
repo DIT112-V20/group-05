@@ -10,34 +10,35 @@
     android:background="#F7292E37"
     tools:context=".ManualActivity2">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
 
 
-        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/TextViewDestination"
-            android:layout_width="match_parent"
+        <EditText
+            android:layout_width="257dp"
+            android:background="@android:color/transparent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@android:color/holo_orange_dark"
-            android:text="     Destination"
-            android:textFontWeight="20"
-            android:textSize="40dp" />
+            android:layout_marginLeft="80sp"
+            android:layout_marginTop="60dp"
+            android:text="Auto Drive"
+            android:gravity="center"
+            android:textSize="37dp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="#E5BC9D2E"
+            android:focusableInTouchMode="false"
+            />
+
 
         <EditText
             android:id="@+id/editTextNumber"
-            android:layout_width="match_parent"
+            android:layout_width="360dp"
             android:layout_height="55dp"
-            android:layout_marginBottom="30dp"
-            android:background="#FFF"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="200dp"
+
             android:ems="10"
-            android:hint="Enter the distance(ex.12)"
+            android:hint="  Enter Distance to Destination in cm"
+            android:background="@drawable/enterdestination"
+            android:textColor="@color/ic_launcher_background"
             android:inputType="number"
             android:maxLines="1"
             android:singleLine="false"
@@ -45,7 +46,6 @@
             tools:visibility="visible" />
 
 
-    </LinearLayout>
 
 
 
@@ -72,9 +72,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_centerInParent="true"
-        android:background="#FFF"
+        android:background="#00424D4F"
         android:ems="10"
-        android:hint="cm"
+        android:textColor="#00424D4F"
         android:inputType="number"
         />
 
@@ -125,7 +125,7 @@
 
     <Button
         android:id="@+id/TempButtonWarning"
-        android:layout_width="wrap_content"
+        android:layout_width="203dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -135,8 +135,8 @@
         android:layout_marginStart="124dp"
         android:layout_marginLeft="124dp"
         android:layout_marginTop="389dp"
-        android:layout_marginEnd="105dp"
-        android:layout_marginRight="105dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginRight="84dp"
         android:text="TempButtonWarning" />
 
     <Button
@@ -145,7 +145,6 @@
         android:layout_height="81dp"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="500dp"
-
         android:background="@drawable/colorchange"
         android:rotation="0"
         android:text="@string/toManual"
@@ -158,9 +157,10 @@
         android:layout_width="211dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="280dp"
         android:layout_marginRight="80dp"
-        android:backgroundTint="#F89708"
+        android:background="@drawable/colorchange"
+android:textSize="20dp"
         android:text="SUBMIT" />
 
 
