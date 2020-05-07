@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F7292E37"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+
+
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/TextViewDestination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/holo_orange_dark"
+            android:text="     Destination"
+            android:textFontWeight="20"
+            android:textSize="40dp" />
+
+        <EditText
+            android:id="@+id/editTextNumber"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="30dp"
+            android:background="#FFF"
+            android:ems="10"
+            android:hint="Enter the distance(ex.12)"
+            android:inputType="number"
+            android:maxLines="1"
+            android:singleLine="false"
+            android:textSize="20dp"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="167dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:backgroundTint="#F89708"
+            android:text="SUBMIT" />
+
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
+
+
+    <TextView
+        android:id="@+id/DestinationTextView"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#FFF"
+        android:ems="10"
+        android:hint="cm"
+        android:inputType="number"
+        />
+
+
+
+
+</RelativeLayout>
+
