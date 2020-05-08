@@ -1,4 +1,4 @@
-package com.example.uidesign
+package com.example.uieric
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
                     val intent = Intent(this, MainActivity::class.java)
                     val toast = Toast.makeText(this@MainActivity, "You must connect first", Toast.LENGTH_SHORT)
-                        toast.setGravity(Gravity.TOP, 0,950)
+                        toast.setGravity(Gravity.TOP, 0,800)
                     toast.show()
                 }
 
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         start.setOnClickListener{
             if(getMyVariableAgain()!=1) {
                 val toast = Toast.makeText(this@MainActivity, "You must connect first", Toast.LENGTH_SHORT)
-                toast.setGravity(Gravity.TOP, 0,950)
+                toast.setGravity(Gravity.TOP, 0,800)
                 toast.show()            }else{
                     if (connectBackround == 2 && offapp == 1) {
 
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
                     } else{
                         val toast = Toast.makeText(this@MainActivity, "You must connect first", Toast.LENGTH_SHORT)
-                        toast.setGravity(Gravity.TOP, 0,950)
+                        toast.setGravity(Gravity.TOP, 0,800)
                         toast.show()
                     }
 
