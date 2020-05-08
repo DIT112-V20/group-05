@@ -10,14 +10,13 @@
     android:background="#F7292E37"
     tools:context=".ManualActivity2">
 
+
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="357dp"
+        android:layout_height="191dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-
-
         android:orientation="vertical">
 
         <TextView
@@ -25,15 +24,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:background="@android:color/holo_orange_dark"
-            android:text="     Destination"
+            android:background="@drawable/colorchange"
+            android:text="       Destination"
             android:textFontWeight="20"
             android:textSize="40dp" />
 
         <EditText
             android:id="@+id/editTextNumber"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_width="340dp"
+            android:layout_height="37dp"
             android:layout_marginBottom="30dp"
             android:background="#FFF"
             android:ems="10"
@@ -47,8 +46,6 @@
 
     </LinearLayout>
 
-
-
     <ImageButton
 
         android:id="@+id/back3"
@@ -57,7 +54,6 @@
         android:layout_gravity="left"
         android:layout_marginLeft="6dp"
         android:layout_marginTop="10dp"
-
         android:background="@drawable/back"
         android:fontFamily="sans-serif-black"
         android:text="@string/Manual"
@@ -68,38 +64,18 @@
 
     <TextView
         android:id="@+id/DestinationTextView"
-        android:layout_width="103dp"
+        android:layout_width="64dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
         android:background="#FFF"
         android:ems="10"
         android:hint="cm"
-        android:inputType="number"
-        />
+        android:inputType="number" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        android:background="@drawable/back"
-        android:fontFamily="sans-serif-black"
-        android:text="@string/Manual"
-        android:textAllCaps="false"
-        android:textColor="#BB070707"
-        android:textSize="25sp" />
 
     <ImageView
         android:id="@+id/on"
@@ -132,11 +108,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="389dp"
-        android:layout_marginEnd="105dp"
-        android:layout_marginRight="105dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="424dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginRight="104dp"
         android:text="TempButtonWarning" />
 
     <Button
@@ -155,16 +131,16 @@
 
     <Button
         android:id="@+id/submitButton"
-        android:layout_width="211dp"
-        android:layout_height="wrap_content"
+        android:layout_width="218dp"
+        android:layout_height="34dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="240dp"
         android:layout_marginRight="80dp"
-        android:backgroundTint="#F89708"
+        android:background="@drawable/colorchange"
         android:text="SUBMIT" />
 
 
-    />
+
 
 
 </RelativeLayout>
