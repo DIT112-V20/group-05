@@ -17,7 +17,7 @@ class activity_automatic : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_automatic)
 
-
+        var finaldigit = 0
         val alertbutton = findViewById(R.id.switchtomanual) as Button
         val tempButton = findViewById(R.id.TempButtonWarning) as Button
         val tempSuccess = findViewById(R.id.TempButtonSuccess) as Button
@@ -170,11 +170,16 @@ class activity_automatic : AppCompatActivity() {
         }
 
 
+        if (getMyVariablestat() == 1 || getMyVariable2() == 1) {
+            finaldigit = 1
+        }
+
+
         val go_back3 = findViewById(R.id.back3) as ImageButton
 
         go_back3.setOnClickListener {
             val intentback = Intent(this, MenuActivity::class.java)
-            intentback.putExtra("BackVariable0", getMyVariable2())
+            intentback.putExtra("BackVariable0", finaldigit)
             startActivity(intentback)
         }
 
