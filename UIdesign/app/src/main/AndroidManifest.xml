@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.uidesign.Main10Activity"></activity>
+        <activity android:name="com.example.uidesign.statstat"></activity>
+        <activity android:name="com.example.uidesign.activity_statistics" />
+        <activity android:name="com.example.uidesign.activity_stat" />
+        <activity android:name="com.example.uidesign.statistics" />
+        <activity android:name="com.example.uidesign.Main10Activity" />
         <activity android:name="com.example.uidesign.MainTry" />
         <activity android:name="com.example.uidesign.Main4Activity" />
         <activity android:name="com.example.uidesign.Main2Activity1" />
