@@ -7,6 +7,8 @@
 //MANUAL (true) OR AUTOMATIC (false) MODE
 boolean nu = true;
 
+Webserver webserver;
+
 //PINS
 const int FRONT_TRIGGER_PIN = 4; 
 const int FRONT_ECHO_PIN = 2; 
@@ -52,11 +54,9 @@ void loop()
 
 //Manual controller (WIP - Work in Progress)
 void manualControlling() {
-  if (client.available()) {
     
     char input;
     float speedPMPS;
-    input = client.read();
     
     switch (input) {
 
@@ -103,7 +103,6 @@ void manualControlling() {
         car.setAngle(0);
         break;
     }
-  }
 }
 
 //Automated controls (WIP - Work in Progress)
