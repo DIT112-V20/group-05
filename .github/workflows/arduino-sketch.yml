@@ -23,8 +23,6 @@ jobs:
       - name: Build sketch
         run: |
           arduino-cli compile -b esp32:esp32:esp32doit-devkit-v1 src/smartCar/smartCar.ino
-          arduino-cli compile -b esp32:esp32:esp32doit-devkit-v1 src/smartCar/Webserver.cpp
-          arduino-cli compile -b esp32:esp32:esp32doit-devkit-v1 src/smartCar/Webserver.h
           
           
 #We don't have any unit test.
