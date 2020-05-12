@@ -29,6 +29,7 @@ class activity_automatic : AppCompatActivity() {
         val destinationView = findViewById<TextView>(R.id.DestinationTextView)
         submitButton.setOnClickListener {
             destinationView.setText(number.text)
+            sendRequest("AutoOn?distance="+number.text.toString())
         }
 
 // this gets the signal from the menu
