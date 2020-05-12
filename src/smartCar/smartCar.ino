@@ -238,7 +238,7 @@ void decreaseSpeed(){
 }
 
 void setCarSpeed(){
-  auto gear;
+  auto gear = server.argName(1);
 
   if (gear = 1){
     CURRENT_SPEED = LOW_SPEED;
