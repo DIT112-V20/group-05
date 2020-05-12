@@ -128,6 +128,7 @@ class ManualActivity2 : AppCompatActivity() {
 
                 }
             }
+            sendRequest("setGear?gear=1")
         }
 
 
@@ -143,6 +144,7 @@ class ManualActivity2 : AppCompatActivity() {
 
                     }
                 }
+                sendRequest("setGear?gear=2")
             }
 
 
@@ -158,8 +160,7 @@ class ManualActivity2 : AppCompatActivity() {
 
                         }
                     }
-
-
+                    sendRequest("setGear?gear=3")
                 }
 
 
