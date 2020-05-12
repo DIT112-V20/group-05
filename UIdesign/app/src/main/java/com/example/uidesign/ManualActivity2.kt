@@ -69,6 +69,9 @@ class ManualActivity2 : AppCompatActivity() {
         var right = findViewById(R.id.rightButton) as Button
         var stop = findViewById(R.id.stopButton) as Button
 
+        var plus = findViewById(R.id.plus) as Button
+        var minus = findViewById(R.id.minus) as Button
+
 
         var button_change = findViewById(R.id.gear1) as Button;
         var button_change2 = findViewById(R.id.gear2) as Button;
@@ -128,6 +131,7 @@ class ManualActivity2 : AppCompatActivity() {
 
                 }
             }
+            sendRequest("setGear?gear=1")
         }
 
 
@@ -143,6 +147,7 @@ class ManualActivity2 : AppCompatActivity() {
 
                     }
                 }
+                sendRequest("setGear?gear=2")
             }
 
 
@@ -158,9 +163,16 @@ class ManualActivity2 : AppCompatActivity() {
 
                         }
                     }
-
-
+                    sendRequest("setGear?gear=3")
                 }
+
+        plus.setOnClickListener {
+            sendRequest("increaseSpeed")
+        }
+
+        minus.setOnClickListener {
+            sendRequest("decreaseSpeed")
+        }
 
 
         if(getMyVariable()==1) {
