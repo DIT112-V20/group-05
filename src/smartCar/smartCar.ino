@@ -166,6 +166,7 @@ void webserverInit() {
   server.on("/turnRight", turnRightEndpoint);
   server.on("/autoOff", turnOffAutomation);
   server.on("/AutoOn", turnOnAutomation);
+  server.on("/setGear", setCarSpeed);
   server.on("/sensor", sensorEndpoint);
 
   //Print local IP address to the serial monitor and start the web server
@@ -174,7 +175,7 @@ void webserverInit() {
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
   server.begin();
-  Serial.print("Server started!");
+  Serial.println("Server started!");
 
   //Add the service to the MDNS-SD
   MDNS.addService("http", "tcp", 12345);
@@ -186,7 +187,7 @@ void webserverCreation() {
 }
 
 void handle_OnConnect() {
-  server.send(200, "text/html", sendHTML());
+  server.send(200, "text/html", sendHTML('\0'));
   Serial.println("Client connected");
 }
 
@@ -196,18 +197,22 @@ void handle_NotFound() {
 
 void forwardEndpoint(){
   car.setSpeed(CURRENT_SPEED);
+  server.send(200, "text/html", sendHTML('f'));
 }
 
 void backwardEndpoint(){
   car.setSpeed(CURRENT_SPEED * -1);
+  server.send(200, "text/html", sendHTML('b'));
 }
 
 void turnLeftEndpoint(){
   car.setAngle(-50);
+  server.send(200, "text/html", sendHTML('l'));
 }
 
 void turnRightEndpoint(){
   car.setAngle(50);
+  server.send(200, "text/html", sendHTML('r'));
 }
 
 void setCarSpeed(){
@@ -234,7 +239,7 @@ void sensorEndpoint(){
   server.send(200, "text/plain", String(front_sensor.getDistance()));
 }
 
-String sendHTML() {
+String sendHTML(char message) {
   String html = "<!DOCTYPE html><html>\n";
   html += "<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n";
   html += "<link rel=\"icon\" href=\"data:,\">\n";
@@ -243,6 +248,23 @@ String sendHTML() {
   html += "text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}\n";
   html += ".button2 {background-color: #555555;}</style></head>\n";
   html += "<body><h1>ESP32 Web Server</h1>\n";
+
+  switch(message){
+    case 'f':
+      html += "<h2>Going forward!</h2>\n";
+      break;
+    case 'b':
+      html += "<h2>Going backward!</h2>\n";
+      break;
+    case 'r':
+      html += "<h2>Turning right!</h2>\n";
+      break;
+    case 'l':
+      html += "<h2>Turning left!</h2>\n";
+      break;
+  }
+  
+  
   html += "</body></html>\n";
 
   return html;
