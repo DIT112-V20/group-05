@@ -238,14 +238,14 @@ void decreaseSpeed(){
 }
 
 void setGear(){
-  int gear = server.arg(1).toInt();
+  int gear = server.arg(0).toInt();
   Serial.println(gear);
 
-  if (gear = 1){
+  if (gear == 1){
     CURRENT_SPEED = LOW_SPEED;
-  }else if(gear = 2){
+  }else if(gear == 2){
     CURRENT_SPEED = MED_SPEED;
-  }else if(gear = 3){
+  }else if(gear == 3){
     CURRENT_SPEED = HIGH_SPEED;
   }
 
