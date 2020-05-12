@@ -14,6 +14,9 @@ void forwardEndpoint();
 void backwardEndpoint();
 void turnLeftEndpoint();
 void turnRightEndpoint();
+void stopCar();
+void increaseSpeed();
+void decreaseSpeed();
 void turnOnAutomation();
 void turnOffAutomation();
 void setCarSpeed();
@@ -168,6 +171,9 @@ void webserverInit() {
   server.on("/AutoOn", turnOnAutomation);
   server.on("/setGear", setCarSpeed);
   server.on("/sensor", sensorEndpoint);
+  server.on("/stop", sensorEndpoint);
+  server.on("/increase", sensorEndpoint);
+  server.on("/decrease", sensorEndpoint);
 
   //Print local IP address to the serial monitor and start the web server
   Serial.println("");
@@ -215,8 +221,24 @@ void turnRightEndpoint(){
   server.send(200, "text/html", sendHTML('r'));
 }
 
+void stopCar(){
+  CURRENT_SPEED = 0;
+  car.setSpeed(CURRENT_SPEED);
+  car.setAngle(0);
+}
+
+void increaseSpeed(){
+  CURRENT_SPEED += 0.1;
+  car.setSpeed(CURRENT_SPEED);
+}
+
+void decreaseSpeed(){
+  CURRENT_SPEED -= 0.1;
+  car.setSpeed(CURRENT_SPEED);
+}
+
 void setCarSpeed(){
-  int gear;
+  auto gear;
 
   if (gear = 1){
     CURRENT_SPEED = LOW_SPEED;
