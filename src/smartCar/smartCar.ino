@@ -6,14 +6,17 @@
 #include <WiFi.h>
 #include <ESPmDNS.h>
 
-//MANUAL (true) OR AUTOMATIC (false) MODE
-boolean nu = true;
-
 //Tell c++ there will be these functions later.
 String sendHTML();
 void handle_OnConnect();
 void handle_NotFound();
 void forwardEndpoint();
+void backwardEndpoint();
+void turnLeftEndpoint();
+void turnRightEndpoint();
+void turnOnAutomation();
+void turnOffAutomation();
+void setCarSpeed();
 void sensorEndpoint();
 
 //VARIABLES FOR WEBSERVER
@@ -40,6 +43,13 @@ DirectionlessOdometer leftOdometer(
 DirectionlessOdometer rightOdometer(
     smartcarlib::pins::v2::rightOdometerPin, []() { rightOdometer.update(); }, pulsesPerMeter);
 
+//CONTROLLER VARIABLES
+double CURRENT_SPEED;
+double LOW_SPEED = 0.25;
+double MED_SPEED = 0.5;
+double HIGH_SPEED = 0.75;
+boolean controllerMode = true; //MANUAL = TRUE; AUTOMATIC = FALSE
+
 //INITIALIZE THE SMARTCAR
 SmartCar car(control, gyroscope, leftOdometer, rightOdometer);
 
@@ -58,74 +68,19 @@ void setup()
 void loop()
 {
     car.update();
-    manualControlling();
     checkObstacle();
-    automatedControl();
+    
+    if(controllerMode == false){
+      automatedControl();
+    }
 
     //Update the webserver
     webserverCreation();
 }
 
-//Manual controller (WIP - Work in Progress)
-void manualControlling() {
-  if (client.available()) {
-    
-    char input;
-    float speedPMPS;
-    input = client.read();
-    
-    switch (input) {
-
-      //Increase the speed
-       case 'w':
-        speedPMPS = car.getSpeed() + 0.3;
-        car.setSpeed(speedPMPS);
-        break;
-
-      //Decrease the speed
-      case 'b':
-        speedPMPS = car.getSpeed() - 0.3;
-        car.setSpeed(speedPMPS);
-        break;
-
-      //Turn left
-      case 'l': 
-        car.setAngle(-50);
-        break;
-
-      //Turn right
-      case 'r':
-        car.setAngle(50);
-        break;
-
-      //Stop the car
-      case 's':
-        speedPMPS = 0;
-        car.setSpeed(speedPMPS);
-        car.setAngle(0);
-        nu = true;
-        break;
-
-      //Automate the car
-      case 'a':
-        speedPMPS = 1;
-        car.setSpeed(speedPMPS);
-        car.setAngle(0);
-        nu = false;
-        break;
-
-      //Reset angle
-      default:
-        car.setAngle(0);
-        break;
-    }
-  }
-}
-
 //Automated controls (WIP - Work in Progress)
 void automatedControl(){
   
-  if(nu == false){
     car.setSpeed(1);
         car.setAngle(0);
     while(front_sensor.getDistance() > 0 && front_sensor.getDistance() < 35){
@@ -172,7 +127,6 @@ void automatedControl(){
 
     car.setSpeed(0);
     }
-  }
 }
 
 //Check for an obstacle
@@ -196,7 +150,7 @@ void webserverInit() {
     delay(1000);
   }
 
-    //mDNS - connect with https://smartcar.local:12345
+  //mDNS - connect with https://smartcar.local:12345
   if(!MDNS.begin("smartcar")){
     Serial.println("Error! mDNS has not been set up.");
   }else{
@@ -207,6 +161,11 @@ void webserverInit() {
   server.on("/", handle_OnConnect);
   server.onNotFound(handle_NotFound);
   server.on("/forward", forwardEndpoint);
+  server.on("/backward", backwardEndpoint);
+  server.on("/turnLeft", turnLeftEndpoint);
+  server.on("/turnRight", turnRightEndpoint);
+  server.on("/autoOff", turnOffAutomation);
+  server.on("/AutoOn", turnOnAutomation);
   server.on("/sensor", sensorEndpoint);
 
   //Print local IP address to the serial monitor and start the web server
@@ -223,9 +182,7 @@ void webserverInit() {
 
 //CREATE AND UPDATE THE WEBSERVER
 void webserverCreation() {
-
   server.handleClient();
-  
 }
 
 void handle_OnConnect() {
@@ -238,6 +195,39 @@ void handle_NotFound() {
 }
 
 void forwardEndpoint(){
+  car.setSpeed(CURRENT_SPEED);
+}
+
+void backwardEndpoint(){
+  car.setSpeed(CURRENT_SPEED * -1);
+}
+
+void turnLeftEndpoint(){
+  car.setAngle(-50);
+}
+
+void turnRightEndpoint(){
+  car.setAngle(50);
+}
+
+void setCarSpeed(){
+  int gear;
+
+  if (gear = 1){
+    CURRENT_SPEED = LOW_SPEED;
+  }else if(gear = 2){
+    CURRENT_SPEED = MED_SPEED;
+  }else if(gear = 3){
+    CURRENT_SPEED = HIGH_SPEED;
+  }
+}
+
+void turnOnAutomation(){
+  controllerMode = false;
+}
+
+void turnOffAutomation(){
+  controllerMode = true;
 }
 
 void sensorEndpoint(){
