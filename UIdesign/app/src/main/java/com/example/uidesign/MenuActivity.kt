@@ -45,24 +45,50 @@ class MenuActivity : AppCompatActivity() {
 
 
 
+        // this gets the signal from automatic
+
+        fun getMyVariablefinal(): Int {
+            if (intent != null) {
+                if (intent.extras != null) {
+                    return intent.extras!!.getInt("BackVariable0")
+                }
+            }
+            return 109 // default
+        }
+
+
+
+
+
+
+
+
+
+
+
+        if(getMyVariable()==1|| getMyVariableback()==1 || getMyVariablefinal() == 1){
+
+            var menuchange = findViewById(R.id.onoff2) as Button;
+            menuchange.setBackgroundResource(R.drawable.transparent)
+            finalresult = 1
+        }
+
+
         if(getMyVariableback()==1){
 
             var backchange = findViewById(R.id.onoff2) as Button;
             backchange.setBackgroundResource(R.drawable.transparent);
+            finalresult = 1
+
         }
 
+        if(getMyVariablefinal()==1){
 
+            var backchange = findViewById(R.id.onoff2) as Button;
+            backchange.setBackgroundResource(R.drawable.transparent);
+            finalresult = 1
 
-        if(getMyVariable()==1|| getMyVariableback()==1){
-
-            var menuchange = findViewById(R.id.onoff2) as Button;
-            menuchange.setBackgroundResource(R.drawable.transparent)
-             finalresult = 1
         }
-
-
-
-
 
 
         val go_back = findViewById(R.id.back1) as ImageButton
@@ -98,8 +124,6 @@ class MenuActivity : AppCompatActivity() {
             intent2.putExtra("SecondVariable", finalresult)
             startActivity(intent2)
         }
-
-
 
     }
 }

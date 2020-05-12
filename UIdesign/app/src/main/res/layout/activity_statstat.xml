@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="77dp"
         android:layout_marginTop="60dp"
-        android:text="Auto Drive"
+        android:text="Trip Statistics"
         android:gravity="center"
         android:textSize="37dp"
         android:fontFamily="sans-serif-black"
@@ -28,22 +28,6 @@
         />
 
 
-    <EditText
-        android:id="@+id/editTextNumber"
-        android:layout_width="360dp"
-        android:layout_height="55dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="200dp"
-
-        android:ems="10"
-        android:hint="  Enter Distance to Destination in cm"
-        android:background="@drawable/enterdestination"
-        android:textColor="@color/ic_launcher_background"
-        android:inputType="number"
-        android:maxLines="1"
-        android:singleLine="false"
-        android:textSize="20dp"
-        tools:visibility="visible" />
 
 
 
@@ -51,7 +35,7 @@
 
     <ImageButton
 
-        android:id="@+id/back3"
+        android:id="@+id/back5"
         android:layout_width="46dp"
         android:layout_height="46dp"
         android:layout_gravity="left"
@@ -64,20 +48,6 @@
         android:textAllCaps="false"
         android:textColor="#BB070707"
         android:textSize="25sp" />
-
-
-    <TextView
-        android:id="@+id/DestinationTextView"
-        android:layout_width="103dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_centerInParent="true"
-        android:background="#00424D4F"
-        android:ems="10"
-        android:textColor="#00424D4F"
-        android:inputType="number"
-        />
-
 
 
     <ImageView
@@ -93,7 +63,7 @@
 
 
     <Button
-        android:id="@+id/onoff3"
+        android:id="@+id/onoff5"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="right"
@@ -102,66 +72,82 @@
         android:background="@drawable/nottransparent" />
 
 
-    <Button
-        android:id="@+id/TempButtonWarning"
-        android:layout_width="203dp"
-        android:layout_height="wrap_content"
 
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="600dp"
-        android:text="Temp Button Warning" />
+
 
     <Button
-        android:id="@+id/TempButtonSuccess"
-        android:layout_width="203dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="220dp"
-        android:layout_marginTop="600dp"
-        android:text="Temp Button Success" />
-
-    <Button
-        android:id="@+id/statistics"
+        android:id="@+id/estimatedTime"
         android:layout_width="378dp"
         android:layout_height="81dp"
         android:layout_marginLeft="18dp"
-        android:layout_marginTop="400dp"
-        android:background="@drawable/inactive"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/statslayout"
         android:rotation="0"
-        android:text="@string/Statistics"
+        android:textAlignment="textStart"
+        android:text="Estimated Time: "
         android:fontFamily="sans-serif-black"
         android:textAllCaps="false"
-        android:textColor="#BB070707"
+        android:textColor="#BBFFFFFF"
         android:textSize="25dp" />
+
     <Button
-        android:id="@+id/switchtomanual"
+        android:id="@+id/actualTime"
         android:layout_width="378dp"
         android:layout_height="81dp"
         android:layout_marginLeft="18dp"
-        android:layout_marginTop="500dp"
-        android:background="@drawable/colorchange"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/statslayout"
         android:rotation="0"
-        android:text="@string/toManual"
+        android:textAlignment="textStart"
+        android:text="Actual Time: "
         android:fontFamily="sans-serif-black"
         android:textAllCaps="false"
-        android:textColor="#BB070707"
+        android:textColor="#BBFFFFFF"
         android:textSize="25dp" />
 
-
+    <Button
+        android:id="@+id/obstaclenumber"
+        android:layout_width="378dp"
+        android:layout_height="81dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="350dp"
+        android:background="@drawable/statslayout"
+        android:rotation="0"
+        android:textAlignment="textStart"
+        android:text="Number of Obstacles: "
+        android:fontFamily="sans-serif-black"
+        android:textAllCaps="false"
+        android:textColor="#BBFFFFFF"
+        android:textSize="25dp" />
 
     <Button
-        android:id="@+id/submitButton"
-        android:layout_width="211dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="280dp"
-        android:layout_marginRight="80dp"
-        android:background="@drawable/colorchange"
+        android:id="@+id/extracost"
+        android:layout_width="378dp"
+        android:layout_height="81dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="450dp"
+        android:background="@drawable/statslayout"
+        android:rotation="0"
+        android:textAlignment="textStart"
+        android:text="Extra Cost: "
         android:fontFamily="sans-serif-black"
-        android:textSize="20dp"
-        android:text="SUBMIT" />
+        android:textAllCaps="false"
+        android:textColor="#BBFFFFFF"
+        android:textSize="25dp" />
 
-
-    />
-
+    <Button
+        android:id="@+id/totalcost"
+        android:layout_width="378dp"
+        android:layout_height="81dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="550dp"
+        android:background="@drawable/statslayout"
+        android:rotation="0"
+        android:textAlignment="textStart"
+        android:text="Total Cost: "
+        android:fontFamily="sans-serif-black"
+        android:textAllCaps="false"
+        android:textColor="#BBFFFFFF"
+        android:textSize="25dp" />
 
 </RelativeLayout>
