@@ -7,6 +7,13 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_manual2.*
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+
 
 
 class ManualActivity2 : AppCompatActivity() {
@@ -60,6 +67,7 @@ class ManualActivity2 : AppCompatActivity() {
         var backward = findViewById(R.id.bottomButton) as Button
         var left = findViewById(R.id.leftButton) as Button
         var right = findViewById(R.id.rightButton) as Button
+        var stop = findViewById(R.id.stopButton) as Button
 
 
         var button_change = findViewById(R.id.gear1) as Button;
@@ -74,6 +82,7 @@ class ManualActivity2 : AppCompatActivity() {
                 button_change.setBackgroundResource(R.drawable.chosengear);
                 gear1background = 1;
             }
+            sendRequest("forward")
         }
 
         backward.setOnClickListener{
@@ -82,6 +91,7 @@ class ManualActivity2 : AppCompatActivity() {
                 button_change.setBackgroundResource(R.drawable.chosengear);
                 gear1background = 1;
             }
+            sendRequest("backward")
         }
         right.setOnClickListener{
             if ((gear1background == 2 && gear2background == 2 && gear3background == 2) && (right_change == 3)){
@@ -89,6 +99,7 @@ class ManualActivity2 : AppCompatActivity() {
                 button_change.setBackgroundResource(R.drawable.chosengear);
                 gear1background = 1;
             }
+            sendRequest("turnRight")
         }
         left.setOnClickListener{
             if ((gear1background == 2 && gear2background == 2 && gear3background == 2) && (left_change == 3)){
@@ -96,6 +107,11 @@ class ManualActivity2 : AppCompatActivity() {
                 button_change.setBackgroundResource(R.drawable.chosengear);
                 gear1background = 1;
             }
+            sendRequest("turnLeft")
+        }
+
+        stop.setOnClickListener {
+            sendRequest("stop")
         }
 
 
@@ -163,5 +179,26 @@ class ManualActivity2 : AppCompatActivity() {
 
 
         }
+
+    fun sendRequest(endpoint : String){
+        val queue: RequestQueue = Volley.newRequestQueue(this)
+        val url = "http://213.80.116.220:12345/$endpoint"
+        val stringRequest =
+                StringRequest(Request.Method.GET, url, object : Response.Listener<String?> {
+                    override fun onResponse(response: String?) {
+                        Toast.makeText(
+                                applicationContext,
+                                "Command was successful !",
+                                Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }, object : Response.ErrorListener {
+                    override fun onErrorResponse(error: VolleyError?) {
+                        Toast.makeText(applicationContext, "Error occurred", Toast.LENGTH_LONG)
+                                .show()
+                    }
+                })
+        queue.add(stringRequest)
+    }
 
     }
