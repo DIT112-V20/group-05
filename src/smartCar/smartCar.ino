@@ -81,12 +81,16 @@ void loop()
 //Automated controls (WIP - Work in Progress)
 void automatedControl(){
   
- int distance = front_sensor.getDistance();
+ //Get distance of the obstacle
+  int distance = front_sensor.getDistance();
   Serial.println(distance);
+  //Turn on the LED at when the obstacle is within a pre-determined distance
   if(distance <= 60 && distance != 0){
     digitalWrite(LED_BUILTIN, HIGH);
     Serial.println("TEST");
   }
+  //Functionality to gradually increase speed
+  //as well as go back if the object comes closer
   if(distance <= 5 && distance != 0){
     CURRENT_SPEED = -0.75;
   }else if(distance <= 10 && distance != 0){
@@ -103,6 +107,7 @@ void automatedControl(){
     CURRENT_SPEED = HIGH_SPEED;
     digitalWrite(LED_BUILTIN, LOW);
   }
+  //Set the speed so the car moves forward
   car.setSpeed(CURRENT_SPEED);
 }
 
