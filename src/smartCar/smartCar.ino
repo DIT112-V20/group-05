@@ -81,16 +81,17 @@ void loop()
 //Automated controls (WIP - Work in Progress)
 void automatedControl(){
   
-  int distance = car.getDistance();
-  if(distance <= 100 || distance = 0){
-    CURRENT_SPEED = HIGH_SPEED;
-  }else if(distance <= 40){
-    CURRENT_SPEED = MED_SPEED;
-  }else if(distance <= 30){
-    CURRENT_SPEED = LOW_SPEED;
-  }else if(distance <= 20){
+ int distance = front_sensor.getDistance();
+  if(distance <= 20 && distance != 0){
     CURRENT_SPEED = 0;
+  }else if(distance <= 60 && distance != 0){
+    CURRENT_SPEED = LOW_SPEED;
+  }else if(distance <= 100 && distance != 0){
+    CURRENT_SPEED = MED_SPEED;
+  }else if(distance == 0){
+    CURRENT_SPEED = HIGH_SPEED;
   }
+  car.setSpeed(CURRENT_SPEED);
 }
 
 //Check for an obstacle
