@@ -82,7 +82,13 @@ void loop()
 void automatedControl(){
   
  int distance = front_sensor.getDistance();
-  if(distance <= 20 && distance != 0){
+  if(distance <= 5 && distance != 0){
+    CURRENT_SPEED = -0.75;
+  }else if(distance <= 10 && distance != 0){
+    CURRENT_SPEED = -0.5;
+  }else if(distance <= 15 && distance != 0){
+    CURRENT_SPEED = -0.25;
+  }else if(distance <= 20 && distance != 0){
     CURRENT_SPEED = 0;
   }else if(distance <= 60 && distance != 0){
     CURRENT_SPEED = LOW_SPEED;
