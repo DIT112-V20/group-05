@@ -81,52 +81,16 @@ void loop()
 //Automated controls (WIP - Work in Progress)
 void automatedControl(){
   
-    car.setSpeed(1);
-        car.setAngle(0);
-    while(front_sensor.getDistance() > 0 && front_sensor.getDistance() < 35){
-           int degrees = 90;
-          float speed = 1;
-          speed = smartcarlib::utils::getAbsolute(speed);
-    degrees %= 360; 
-    if (degrees == 0)
-    {
-        return;
-    }
-
-    car.setSpeed(speed);
-    if (degrees > 0)
-    {
-        car.setAngle(90);
-    }
-    else
-    {
-        car.setAngle(-90);
-    }
-
-    const auto initialHeading    = car.getHeading();
-    bool hasReachedTargetDegrees = false;
-    while (!hasReachedTargetDegrees)
-    {
-        car.update();
-        auto currentHeading = car.getHeading();
-        if (degrees < 0 && currentHeading > initialHeading)
-        {
-            
-            currentHeading -= 360;
-        }
-        else if (degrees > 0 && currentHeading < initialHeading)
-        {
-            
-            currentHeading += 360;
-        }
-        
-        int degreesTurnedSoFar  = initialHeading - currentHeading;
-        hasReachedTargetDegrees = smartcarlib::utils::getAbsolute(degreesTurnedSoFar)
-                                  >= smartcarlib::utils::getAbsolute(degrees);
-    }
-
-    car.setSpeed(0);
-    }
+  int distance = car.getDistance();
+  if(distance <= 100 || distance = 0){
+    CURRENT_SPEED = HIGH_SPEED;
+  }else if(distance <= 40){
+    CURRENT_SPEED = MED_SPEED;
+  }else if(distance <= 30){
+    CURRENT_SPEED = LOW_SPEED;
+  }else if(distance <= 20){
+    CURRENT_SPEED = 0;
+  }
 }
 
 //Check for an obstacle
