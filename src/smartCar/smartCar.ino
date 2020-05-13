@@ -82,6 +82,11 @@ void loop()
 void automatedControl(){
   
  int distance = front_sensor.getDistance();
+  Serial.println(distance);
+  if(distance <= 60 && distance != 0){
+    digitalWrite(LED_BUILTIN, HIGH);
+    Serial.println("TEST");
+  }
   if(distance <= 5 && distance != 0){
     CURRENT_SPEED = -0.75;
   }else if(distance <= 10 && distance != 0){
@@ -96,6 +101,7 @@ void automatedControl(){
     CURRENT_SPEED = MED_SPEED;
   }else if(distance == 0){
     CURRENT_SPEED = HIGH_SPEED;
+    digitalWrite(LED_BUILTIN, LOW);
   }
   car.setSpeed(CURRENT_SPEED);
 }
