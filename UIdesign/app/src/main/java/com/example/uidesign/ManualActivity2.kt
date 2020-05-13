@@ -200,7 +200,7 @@ class ManualActivity2 : AppCompatActivity() {
                     override fun onResponse(response: String?) {
                         Toast.makeText(
                                 applicationContext,
-                                response,
+                                "Command was successful !",
                                 Toast.LENGTH_LONG
                         ).show()
                     }
