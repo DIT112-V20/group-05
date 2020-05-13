@@ -81,52 +81,34 @@ void loop()
 //Automated controls (WIP - Work in Progress)
 void automatedControl(){
   
-    car.setSpeed(1);
-        car.setAngle(0);
-    while(front_sensor.getDistance() > 0 && front_sensor.getDistance() < 35){
-           int degrees = 90;
-          float speed = 1;
-          speed = smartcarlib::utils::getAbsolute(speed);
-    degrees %= 360; 
-    if (degrees == 0)
-    {
-        return;
-    }
-
-    car.setSpeed(speed);
-    if (degrees > 0)
-    {
-        car.setAngle(90);
-    }
-    else
-    {
-        car.setAngle(-90);
-    }
-
-    const auto initialHeading    = car.getHeading();
-    bool hasReachedTargetDegrees = false;
-    while (!hasReachedTargetDegrees)
-    {
-        car.update();
-        auto currentHeading = car.getHeading();
-        if (degrees < 0 && currentHeading > initialHeading)
-        {
-            
-            currentHeading -= 360;
-        }
-        else if (degrees > 0 && currentHeading < initialHeading)
-        {
-            
-            currentHeading += 360;
-        }
-        
-        int degreesTurnedSoFar  = initialHeading - currentHeading;
-        hasReachedTargetDegrees = smartcarlib::utils::getAbsolute(degreesTurnedSoFar)
-                                  >= smartcarlib::utils::getAbsolute(degrees);
-    }
-
-    car.setSpeed(0);
-    }
+ //Get distance of the obstacle
+  int distance = front_sensor.getDistance();
+  Serial.println(distance);
+  //Turn on the LED at when the obstacle is within a pre-determined distance
+  if(distance <= 60 && distance != 0){
+    digitalWrite(LED_BUILTIN, HIGH);
+    Serial.println("TEST");
+  }
+  //Functionality to gradually increase speed
+  //as well as go back if the object comes closer
+  if(distance <= 5 && distance != 0){
+    CURRENT_SPEED = -0.75;
+  }else if(distance <= 10 && distance != 0){
+    CURRENT_SPEED = -0.5;
+  }else if(distance <= 15 && distance != 0){
+    CURRENT_SPEED = -0.25;
+  }else if(distance <= 20 && distance != 0){
+    CURRENT_SPEED = 0;
+  }else if(distance <= 60 && distance != 0){
+    CURRENT_SPEED = LOW_SPEED;
+  }else if(distance <= 100 && distance != 0){
+    CURRENT_SPEED = MED_SPEED;
+  }else if(distance == 0){
+    CURRENT_SPEED = HIGH_SPEED;
+    digitalWrite(LED_BUILTIN, LOW);
+  }
+  //Set the speed so the car moves forward
+  car.setSpeed(CURRENT_SPEED);
 }
 
 //Check for an obstacle
