@@ -13,8 +13,8 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.myapplication.MainActivity
-import com.example.uidesign.statstat
+import com.example.uieric.MainActivity
+
 
 import kotlinx.android.synthetic.main.activity_automatic.*
 
