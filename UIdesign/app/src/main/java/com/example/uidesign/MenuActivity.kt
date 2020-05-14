@@ -7,7 +7,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
-import com.example.myapplication.MainActivity
+import com.example.uieric.MainActivity
+
 import kotlinx.android.synthetic.main.activity_menu.*
 
 
