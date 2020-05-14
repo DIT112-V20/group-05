@@ -96,6 +96,19 @@ class ManualActivity2 : AppCompatActivity() {
             }
             sendRequest("backward")
         }
+		
+		right.setOnTouchListener(View.OnTouchListener { view, motionEvent ->
+            when (motionEvent.action){
+                MotionEvent.ACTION_DOWN -> {
+                    sendRequest("turnRight")
+                }
+                MotionEvent.ACTION_UP -> {
+                    sendRequest("resetAngle")
+                }
+            }
+            return@OnTouchListener true
+        })
+		
         right.setOnClickListener{
             if ((gear1background == 2 && gear2background == 2 && gear3background == 2) && (right_change == 3)){
 
