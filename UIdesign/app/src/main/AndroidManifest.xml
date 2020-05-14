@@ -12,7 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.example.myapplication.MainActivity" />
+
+        <activity android:name="com.example.uidesign.statistic2"></activity>
+
+      
+
         <activity android:name="com.example.uidesign.statstat" />
         <activity android:name=".PopUpObstacle" />
         <activity android:name=".ManualActivityLink" />

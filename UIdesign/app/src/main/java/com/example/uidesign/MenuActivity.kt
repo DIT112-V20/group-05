@@ -9,6 +9,10 @@ import android.widget.ImageButton
 import android.widget.Toast
 import com.example.uieric.MainActivity
 
+import com.example.uieric.ManualActivity2
+import com.example.uieric.R
+import com.example.uieric.activity_automatic
+
 import kotlinx.android.synthetic.main.activity_menu.*
 
 
