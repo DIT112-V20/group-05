@@ -58,13 +58,8 @@ class ManualActivityLink : AppCompatActivity() {
         }
 
 
-        val go_back2 = findViewById(R.id.back2) as ImageButton
 
-        go_back2.setOnClickListener {
-            val intentback = Intent(this, activity_automatic::class.java)
-            intentback.putExtra("BackVariable3", getMyVariable3())
-            startActivity(intentback)
-        }
+
 
 
 
