@@ -121,22 +121,7 @@ class ManualActivity2 : AppCompatActivity() {
             return@OnTouchListener true
         })
 		
-        right.setOnClickListener{
-            if ((gear1background == 2 && gear2background == 2 && gear3background == 2) && (right_change == 3)){
-
-                button_change.setBackgroundResource(R.drawable.chosengear);
-                gear1background = 1;
-            }
-            sendRequest("turnRight")
-        }
-        left.setOnClickListener{
-            if ((gear1background == 2 && gear2background == 2 && gear3background == 2) && (left_change == 3)){
-
-                button_change.setBackgroundResource(R.drawable.chosengear);
-                gear1background = 1;
-            }
-            sendRequest("turnLeft")
-        }
+       
 
         stop.setOnClickListener {
             sendRequest("stop")
