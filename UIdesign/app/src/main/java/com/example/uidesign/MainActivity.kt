@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.uieric
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +12,8 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.uieric.MenuActivity
+import com.example.uieric.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -91,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                         btn_click_me = findViewById(R.id.getstarted) as Button
 
 
-                        val intent = Intent(this, MenuActivity::class.java)
+                        val intent = Intent(this, DestinationMenu::class.java)
 
                         intent.putExtra("FirstVariable", offapp)
                         startActivity(intent)

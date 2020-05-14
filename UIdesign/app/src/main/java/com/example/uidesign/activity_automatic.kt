@@ -13,7 +13,7 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.uidesign.statstat
+
 import kotlinx.android.synthetic.main.activity_automatic.*
 
 class activity_automatic : AppCompatActivity() {
