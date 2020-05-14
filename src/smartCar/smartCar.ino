@@ -55,7 +55,6 @@ void setup()
 void loop()
 {
     car.update();
-    checkObstacle();
     
     if(controllerMode == false){
       automatedControl();
@@ -96,15 +95,6 @@ void automatedControl(){
   }
   //Set the speed so the car moves forward
   car.setSpeed(CURRENT_SPEED);
-}
-
-//Check for an obstacle
-void checkObstacle(){
-    int distance = front_sensor.getDistance();
-    
-    if(distance > 0 && distance < 25){
-      car.setSpeed(0);
-  }
 }
 
 //INITIALIZE THE WEBSERVER
