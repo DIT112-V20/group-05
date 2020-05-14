@@ -6,22 +6,6 @@
 #include <WiFi.h>
 #include <ESPmDNS.h>
 
-//Tell c++ there will be these functions later.
-String sendHTML();
-void handle_OnConnect();
-void handle_NotFound();
-void forwardEndpoint();
-void backwardEndpoint();
-void turnLeftEndpoint();
-void turnRightEndpoint();
-void stopCar();
-void increaseSpeed();
-void decreaseSpeed();
-void turnOnAutomation();
-void turnOffAutomation();
-void setGear();
-void sensorEndpoint();
-
 //VARIABLES FOR WEBSERVER
 const char* ssid = "";
 const char* password = "";
