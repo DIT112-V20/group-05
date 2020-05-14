@@ -96,22 +96,32 @@ class ManualActivity2 : AppCompatActivity() {
             }
             sendRequest("backward")
         }
-        right.setOnClickListener{
-            if ((gear1background == 2 && gear2background == 2 && gear3background == 2) && (right_change == 3)){
-
-                button_change.setBackgroundResource(R.drawable.chosengear);
-                gear1background = 1;
+		
+		right.setOnTouchListener(View.OnTouchListener { view, motionEvent ->
+            when (motionEvent.action){
+                MotionEvent.ACTION_DOWN -> {
+                    sendRequest("turnRight")
+                }
+                MotionEvent.ACTION_UP -> {
+                    sendRequest("resetAngle")
+                }
             }
-            sendRequest("turnRight")
-        }
-        left.setOnClickListener{
-            if ((gear1background == 2 && gear2background == 2 && gear3background == 2) && (left_change == 3)){
-
-                button_change.setBackgroundResource(R.drawable.chosengear);
-                gear1background = 1;
+            return@OnTouchListener true
+        })
+		
+		left.setOnTouchListener(View.OnTouchListener { view, motionEvent ->
+            when (motionEvent.action){
+                MotionEvent.ACTION_DOWN -> {
+                    sendRequest("turnLeft")
+                }
+                MotionEvent.ACTION_UP -> {
+                    sendRequest("resetAngle")
+                }
             }
-            sendRequest("turnLeft")
-        }
+            return@OnTouchListener true
+        })
+		
+       
 
         stop.setOnClickListener {
             sendRequest("stop")
