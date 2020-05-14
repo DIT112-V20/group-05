@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                         btn_click_me = findViewById(R.id.getstarted) as Button
 
 
-                        val intent = Intent(this, MenuActivity::class.java)
+                        val intent = Intent(this, DestinationMenu::class.java)
 
                         intent.putExtra("FirstVariable", offapp)
                         startActivity(intent)
