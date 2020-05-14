@@ -6,25 +6,9 @@
 #include <WiFi.h>
 #include <ESPmDNS.h>
 
-//Tell c++ there will be these functions later.
-String sendHTML();
-void handle_OnConnect();
-void handle_NotFound();
-void forwardEndpoint();
-void backwardEndpoint();
-void turnLeftEndpoint();
-void turnRightEndpoint();
-void stopCar();
-void increaseSpeed();
-void decreaseSpeed();
-void turnOnAutomation();
-void turnOffAutomation();
-void setGear();
-void sensorEndpoint();
-
 //VARIABLES FOR WEBSERVER
-const char* ssid = "";
-const char* password = "";
+const char* ssid = "Yake";
+const char* password = "403ccad8";
 WebServer server(12345);
 WiFiClient client;
 String header;
@@ -32,6 +16,12 @@ String header;
 //PINS
 const int FRONT_TRIGGER_PIN = 4; 
 const int FRONT_ECHO_PIN = 2; 
+
+//Variables for statistics
+int distanceToDrive = 100;
+int correctHeadingDriven;
+int incorrectHeadingDriven;
+int correctHeading;
 
 //SMARTCAR VARIABLES
 const unsigned int FRONT_MAX_DISTANCE = 100;
@@ -47,10 +37,10 @@ DirectionlessOdometer rightOdometer(
     smartcarlib::pins::v2::rightOdometerPin, []() { rightOdometer.update(); }, pulsesPerMeter);
 
 //CONTROLLER VARIABLES
-double CURRENT_SPEED;
 double LOW_SPEED = 0.25;
-double MED_SPEED = 0.5;
-double HIGH_SPEED = 0.75;
+double MED_SPEED = 1;
+double HIGH_SPEED = 1.5;
+double CURRENT_SPEED = LOW_SPEED;
 boolean controllerMode = true; //MANUAL = TRUE; AUTOMATIC = FALSE
 
 //INITIALIZE THE SMARTCAR
@@ -64,6 +54,8 @@ void setup()
     //The speed of the car is in m/s.
     car.enableCruiseControl();
 
+    correctHeading = gyroscope.getHeading();
+
     //Setup the webserver
     webserverInit();
 }
@@ -71,7 +63,6 @@ void setup()
 void loop()
 {
     car.update();
-    checkObstacle();
     
     if(controllerMode == false){
       automatedControl();
@@ -79,6 +70,8 @@ void loop()
 
     //Update the webserver
     webserverCreation();
+
+    checkDestination();
 }
 
 //Automated controls (WIP - Work in Progress)
@@ -114,15 +107,6 @@ void automatedControl(){
   car.setSpeed(CURRENT_SPEED);
 }
 
-//Check for an obstacle
-void checkObstacle(){
-    int distance = front_sensor.getDistance();
-    
-    if(distance > 0 && distance < 25){
-      car.setSpeed(0);
-  }
-}
-
 //INITIALIZE THE WEBSERVER
 void webserverInit() {
 
@@ -145,17 +129,21 @@ void webserverInit() {
   //HTTP requests handling
   server.on("/", handle_OnConnect);
   server.onNotFound(handle_NotFound);
+  server.on("/disconnect", handle_OnDisconnect);
   server.on("/forward", forwardEndpoint);
   server.on("/backward", backwardEndpoint);
   server.on("/turnLeft", turnLeftEndpoint);
   server.on("/turnRight", turnRightEndpoint);
+  server.on("/submit", distanceSubmitted);
   server.on("/autoOff", turnOffAutomation);
   server.on("/AutoOn", turnOnAutomation);
   server.on("/setGear", setGear);
   server.on("/sensor", sensorEndpoint);
   server.on("/stop", stopCar);
+  server.on("/resetAngle", resetAngle);
   server.on("/increase", increaseSpeed);
   server.on("/decrease", decreaseSpeed);
+  server.on("/destinationReached", destinationReached);
 
   //Print local IP address to the serial monitor and start the web server
   Serial.println("");
@@ -176,16 +164,22 @@ void webserverCreation() {
 
 void handle_OnConnect() {
   server.send(200, "text/html", sendHTML('\0'));
-  Serial.println("Client connected");
+  Serial.println("Client has connected");
 }
 
 void handle_NotFound() {
   server.send(404, "text/plain", "NOT FOUND");
 }
 
+void handle_OnDisconnect(){
+  server.send(200, "text/plain", "DISCONNECTED");
+  Serial.println("Client has disconnected.");
+}
+
 void forwardEndpoint(){
   car.setSpeed(CURRENT_SPEED);
   server.send(200, "text/html", sendHTML('f'));
+  Serial.println("for");
 }
 
 void backwardEndpoint(){
@@ -203,10 +197,19 @@ void turnRightEndpoint(){
   server.send(200, "text/html", sendHTML('r'));
 }
 
-void stopCar(){
-  CURRENT_SPEED = 0;
-  car.setSpeed(CURRENT_SPEED);
+void resetAngle(){
   car.setAngle(0);
+}
+
+void distanceSubmitted(){
+  distanceToDrive = server.arg(0).toInt();
+}
+
+void stopCar(){
+  CURRENT_SPEED = LOW_SPEED;
+  car.setSpeed(0);
+  car.setAngle(0);
+  Serial.println("STOP");
 }
 
 void increaseSpeed(){
@@ -240,6 +243,12 @@ void turnOnAutomation(){
 
 void turnOffAutomation(){
   controllerMode = true;
+}
+
+void destinationReached(){
+  String result;
+  
+  server.send(200, "text/plain", result);
 }
 
 void sensorEndpoint(){
@@ -278,4 +287,25 @@ String sendHTML(char message) {
   html += "</body></html>\n";
 
   return html;
+}
+
+void checkDestination(){
+  
+  if(correctHeadingDriven == distanceToDrive){
+    Serial.println("DONE");
+    car.setSpeed(0);
+  }else{
+    Serial.println("NOT DONE");
+  }
+
+  int currentHeading = gyroscope.getHeading();
+  Serial.println(currentHeading);
+  Serial.println(car.getDistance());
+
+  if(currentHeading > (correctHeading-10) && currentHeading < (correctHeading+10)){
+    correctHeadingDriven = car.getDistance() - incorrectHeadingDriven;
+  }else{
+    incorrectHeadingDriven = car.getDistance() - correctHeadingDriven;
+    distanceToDrive += incorrectHeadingDriven;
+  }
 }
