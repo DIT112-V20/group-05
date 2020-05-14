@@ -13,7 +13,7 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-
+import com.example.uidesign.statstat
 
 
 class ManualActivity2 : AppCompatActivity() {
@@ -22,6 +22,8 @@ class ManualActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manual2)
 
+
+        // to send the data from activity to a different activity
         fun getMyVariable(): Int {
             if (intent != null) {
                 if (intent.extras != null) {
@@ -31,24 +33,27 @@ class ManualActivity2 : AppCompatActivity() {
             return 109 // default
         }
 
-        fun getMyVariablefromAuto(): Int {
-            if (intent != null) {
-                if (intent.extras != null) {
-                    return intent.extras!!.getInt("VariablefromaAuto")
-                }
-            }
-            return 109 // default
+        //  go to automatic and send data through the getMyVariable function
+
+        val drive_automatic = findViewById(R.id.toautomatic) as ImageButton
+
+        drive_automatic.setOnClickListener {
+            val autodrive = Intent(this, MenuActivity::class.java)
+            autodrive.putExtra("BackVariable1", getMyVariable())
+            startActivity(autodrive)
         }
 
-        // this gives the signal to menu
 
-        val go_back2 = findViewById(R.id.back2) as ImageButton
 
-        go_back2.setOnClickListener {
-            val intentback = Intent(this, MenuActivity::class.java)
-            intentback.putExtra("BackVariable1", getMyVariable())
-             startActivity(intentback)
-            }
+        // go to statistics
+
+        val Statistics = findViewById(R.id.manualreached) as Button
+
+
+        Statistics.setOnClickListener {
+            val intentback = Intent(this, statstat::class.java)
+            startActivity(intentback)
+        }
 
 
 
@@ -183,22 +188,6 @@ class ManualActivity2 : AppCompatActivity() {
         minus.setOnClickListener {
             sendRequest("decreaseSpeed")
         }
-
-
-        if(getMyVariable()==1) {
-
-            var menuchange = findViewById(R.id.onoff3) as Button;
-            menuchange.setBackgroundResource(R.drawable.transparent);
-        }
-
-
-        if(getMyVariablefromAuto()==1) {
-
-            var menuchange = findViewById(R.id.onoff3) as Button;
-            menuchange.setBackgroundResource(R.drawable.transparent);
-        }
-
-
 
         }
 

@@ -28,30 +28,9 @@
         />
 
 
-    <EditText
-        android:id="@+id/editTextNumber"
-        android:layout_width="360dp"
-        android:layout_height="55dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="200dp"
-
-        android:ems="10"
-        android:hint="  Enter Distance to Destination in cm"
-        android:background="@drawable/enterdestination"
-        android:textColor="@color/ic_launcher_background"
-        android:inputType="number"
-        android:maxLines="1"
-        android:singleLine="false"
-        android:textSize="20dp"
-        tools:visibility="visible" />
-
-
-
-
-
     <ImageButton
 
-        android:id="@+id/back3"
+        android:id="@+id/toManual"
         android:layout_width="46dp"
         android:layout_height="46dp"
         android:layout_gravity="left"
@@ -66,102 +45,19 @@
         android:textSize="25sp" />
 
 
-    <TextView
-        android:id="@+id/DestinationTextView"
-        android:layout_width="103dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_centerInParent="true"
-        android:background="#00424D4F"
-        android:ems="10"
-        android:textColor="#00424D4F"
-        android:inputType="number"
-        />
-
-
-
-    <ImageView
-        android:id="@+id/on"
-        android:layout_width="122dp"
-        android:layout_height="44dp"
-        android:layout_gravity="right"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="347dp"
-        android:src="@drawable/on"
-        />
-
-
-
     <Button
-        android:id="@+id/onoff3"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="right"
-        android:layout_marginLeft="360dp"
-        android:layout_marginTop="22dp"
-        android:background="@drawable/nottransparent" />
-
-
-    <Button
-        android:id="@+id/TempButtonWarning"
-        android:layout_width="203dp"
-        android:layout_height="wrap_content"
-
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="600dp"
-        android:text="Temp Button Warning" />
-
-    <Button
-        android:id="@+id/TempButtonSuccess"
-        android:layout_width="203dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="220dp"
-        android:layout_marginTop="600dp"
-        android:text="Temp Button Success" />
-
-    <Button
-        android:id="@+id/statistics"
+        android:id="@+id/autoreahced"
         android:layout_width="378dp"
         android:layout_height="81dp"
         android:layout_marginLeft="18dp"
-        android:layout_marginTop="400dp"
-        android:background="@drawable/inactive"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/colorchange"
         android:rotation="0"
-        android:text="@string/Statistics"
+        android:text="Destination Reached"
         android:fontFamily="sans-serif-black"
         android:textAllCaps="false"
         android:textColor="#BB070707"
         android:textSize="25dp" />
-    <Button
-        android:id="@+id/switchtomanual"
-        android:layout_width="378dp"
-        android:layout_height="81dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="500dp"
-        android:background="@drawable/colorchange"
-        android:rotation="0"
-        android:text="@string/toManual"
-        android:fontFamily="sans-serif-black"
-        android:textAllCaps="false"
-        android:textColor="#BB070707"
-        android:textSize="25dp" />
-
-
-
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="211dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="280dp"
-        android:layout_marginRight="80dp"
-        android:background="@drawable/colorchange"
-        android:fontFamily="sans-serif-black"
-        android:textSize="20dp"
-        android:text="SUBMIT" />
-
-
-    />
 
 
 </RelativeLayout>
