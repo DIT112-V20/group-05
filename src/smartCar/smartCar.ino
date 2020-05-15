@@ -23,8 +23,6 @@ int distanceToDrive = originalDistance;
 int correctHeadingDriven = 0;
 int incorrectHeadingDriven = 0;
 int correctHeading = 0;
-int distanceToDrive = 0;
-
 
 //SMARTCAR VARIABLES
 const unsigned int FRONT_MAX_DISTANCE = 100;
