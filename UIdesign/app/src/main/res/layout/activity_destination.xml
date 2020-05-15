@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#F7292E37"
-    tools:context=".MenuActivity">
+    tools:context=".Destination">
 
 
     <EditText
@@ -53,6 +53,22 @@
         android:textColor="#BB070707"
         android:textSize="25dp"
         />
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="10dp"
+
+        android:background="@drawable/pngguru"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/Manual"
+        android:textAllCaps="false"
+        android:textColor="#BB070707"
+        android:textSize="25sp" />
+
 
     <Button
         android:id="@+id/destination1"
