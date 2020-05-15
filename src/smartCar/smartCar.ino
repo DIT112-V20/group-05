@@ -18,7 +18,11 @@ const int FRONT_TRIGGER_PIN = 4;
 const int FRONT_ECHO_PIN = 2; 
 
 //Variables for statistics
-int distanceToDrive = 0;
+int originalDistance = 200;
+int distanceToDrive = originalDistance;
+int correctHeadingDriven = 0;
+int incorrectHeadingDriven = 0;
+int correctHeading = 0;
 
 //SMARTCAR VARIABLES
 const unsigned int FRONT_MAX_DISTANCE = 100;
@@ -26,7 +30,7 @@ SR04 front_sensor(FRONT_TRIGGER_PIN, FRONT_ECHO_PIN, FRONT_MAX_DISTANCE);
 BrushedMotor leftMotor(smartcarlib::pins::v2::leftMotorPins);
 BrushedMotor rightMotor(smartcarlib::pins::v2::rightMotorPins);
 DifferentialControl control(leftMotor, rightMotor);
-GY50 gyroscope(37);
+GY50 gyroscope(2);
 const auto pulsesPerMeter = 600;
 DirectionlessOdometer leftOdometer(
     smartcarlib::pins::v2::leftOdometerPin, []() { leftOdometer.update(); }, pulsesPerMeter);
@@ -51,6 +55,8 @@ void setup()
     //The speed of the car is in m/s.
     car.enableCruiseControl();
 
+    correctHeading = gyroscope.getHeading();
+
     //Setup the webserver
     webserverInit();
 }
@@ -63,8 +69,12 @@ void loop()
       automatedControl();
     }
 
+    pinMode(LED_BUILTIN, OUTPUT);
+    
     //Update the webserver
     webserverCreation();
+
+    checkDestination();
 }
 
 //Automated controls (WIP - Work in Progress)
@@ -76,7 +86,6 @@ void automatedControl(){
   //Turn on the LED at when the obstacle is within a pre-determined distance
   if(distance <= 60 && distance != 0){
     digitalWrite(LED_BUILTIN, HIGH);
-    Serial.println("TEST");
   }
   //Functionality to gradually increase speed
   //as well as go back if the object comes closer
@@ -280,4 +289,21 @@ String sendHTML(char message) {
   html += "</body></html>\n";
 
   return html;
+}
+
+void checkDestination(){
+  
+  if(correctHeadingDriven == distanceToDrive){
+    CURRENT_SPEED = 0;
+    car.setSpeed(CURRENT_SPEED);
+  }
+  
+  int currentHeading = gyroscope.getHeading();
+
+  if(currentHeading > (correctHeading-10) && currentHeading < (correctHeading+10)){
+    correctHeadingDriven = car.getDistance() - incorrectHeadingDriven;
+  }else{
+    incorrectHeadingDriven = car.getDistance() - correctHeadingDriven;
+    distanceToDrive = originalDistance + incorrectHeadingDriven;
+  }
 }
