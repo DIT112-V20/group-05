@@ -10,11 +10,11 @@
     tools:context=".ManualActivity2">
 
     <Button
-        android:id="@+id/manualreached"
+        android:id="@+id/toStatistics"
         android:layout_width="378dp"
         android:layout_height="81dp"
         android:layout_marginLeft="18dp"
-        android:layout_marginTop="520dp"
+        android:layout_marginTop="515dp"
         android:background="@drawable/colorchange"
         android:rotation="0"
         android:text="Destination Reached"
@@ -145,7 +145,7 @@
         android:layout_marginTop="186dp"
         android:rotation="270"
         android:background="@drawable/round"
-           />
+        />
 
 
 

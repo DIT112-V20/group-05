@@ -13,7 +13,7 @@
 
     <ImageButton
 
-        android:id="@+id/homeImageButton"
+        android:id="@+id/home"
         android:layout_width="46dp"
         android:layout_height="46dp"
         android:layout_gravity="left"
@@ -33,7 +33,7 @@
 
 
 
-<EditText
+    <EditText
         android:layout_width="257dp"
         android:background="@android:color/transparent"
         android:layout_height="wrap_content"
