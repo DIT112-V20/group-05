@@ -69,6 +69,8 @@ void loop()
       automatedControl();
     }
 
+    pinMode(LED_BUILTIN, OUTPUT);
+
     //Update the webserver
     webserverCreation();
 
@@ -84,7 +86,6 @@ void automatedControl(){
   //Turn on the LED at when the obstacle is within a pre-determined distance
   if(distance <= 60 && distance != 0){
     digitalWrite(LED_BUILTIN, HIGH);
-    Serial.println("TEST");
   }
   //Functionality to gradually increase speed
   //as well as go back if the object comes closer
@@ -293,20 +294,11 @@ String sendHTML(char message) {
 void checkDestination(){
   
   if(correctHeadingDriven == distanceToDrive){
-    Serial.println("DONE");
     CURRENT_SPEED = 0;
     car.setSpeed(CURRENT_SPEED);
-  }else{
-    Serial.println("NOT DONE");
   }
-
+  
   int currentHeading = gyroscope.getHeading();
-  Serial.println("Heading: " +currentHeading);
-  Serial.println("Distance: "+car.getDistance());
-  Serial.println("correct: " + correctHeadingDriven);
-  Serial.println("incorrect: " + incorrectHeadingDriven);
-  Serial.println("total: " + distanceToDrive);
-  delay(1000);
 
   if(currentHeading > (correctHeading-10) && currentHeading < (correctHeading+10)){
     correctHeadingDriven = car.getDistance() - incorrectHeadingDriven;
