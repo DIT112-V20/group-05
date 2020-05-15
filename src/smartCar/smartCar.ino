@@ -7,8 +7,8 @@
 #include <ESPmDNS.h>
 
 //VARIABLES FOR WEBSERVER
-const char* ssid = "";
-const char* password = "";
+const char* ssid = "Yake";
+const char* password = "403ccad8";
 WebServer server(12345);
 WiFiClient client;
 String header;
@@ -23,6 +23,8 @@ int distanceToDrive = originalDistance;
 int correctHeadingDriven = 0;
 int incorrectHeadingDriven = 0;
 int correctHeading = 0;
+int distanceToDrive = 0;
+
 
 //SMARTCAR VARIABLES
 const unsigned int FRONT_MAX_DISTANCE = 100;
@@ -38,7 +40,7 @@ DirectionlessOdometer rightOdometer(
     smartcarlib::pins::v2::rightOdometerPin, []() { rightOdometer.update(); }, pulsesPerMeter);
 
 //CONTROLLER VARIABLES
-double LOW_SPEED = 0.25;
+double LOW_SPEED = 0.50;
 double MED_SPEED = 1;
 double HIGH_SPEED = 1.5;
 double CURRENT_SPEED = LOW_SPEED;

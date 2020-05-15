@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#292E37"
-    tools:context=".ManualActivity2">
+    tools:context=".activity_automatic">
 
 
 

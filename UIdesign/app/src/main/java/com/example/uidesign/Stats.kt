@@ -1,21 +1,28 @@
 package com.example.uidesign
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
-import com.example.uieric.R
-import kotlinx.android.synthetic.main.popwindow.*
 
-class statistic2 : AppCompatActivity() {
+class Stats : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_statistic2)
+        setContentView(R.layout.activity_stats)
 
-        val tripStatistic = textView
 
-        val home = findViewById(R.id.homeImageButton)as ImageButton
+
+        val home = findViewById(R.id.home) as ImageButton
+
+        home.setOnClickListener {
+            val home = Intent(this, MainActivity::class.java)
+            home.putExtra("BackVariable2", 1)
+            startActivity(home)
+
+        }
+
 
         val estimatedDistance = findViewById(R.id.estimatedDistance)as Button
 
@@ -23,8 +30,6 @@ class statistic2 : AppCompatActivity() {
 
         val  actualDistance = findViewById(R.id.actualDistance)as Button
 
+
     }
 }
-
-
-
