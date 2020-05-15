@@ -297,7 +297,8 @@ void checkDestination(){
   
   if(correctHeadingDriven == distanceToDrive){
     Serial.println("DONE");
-    car.setSpeed(0);
+    CURRENT_SPEED = 0;
+    car.setSpeed(CURRENT_SPEED);
   }else{
     Serial.println("NOT DONE");
   }
@@ -314,6 +315,6 @@ void checkDestination(){
     correctHeadingDriven = car.getDistance() - incorrectHeadingDriven;
   }else{
     incorrectHeadingDriven = car.getDistance() - correctHeadingDriven;
-    distanceToDrive += incorrectHeadingDriven;
+    distanceToDrive = originalDistance + incorrectHeadingDriven;
   }
 }
