@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
                     val intent = Intent(this, Destination::class.java)
                     val toast = Toast.makeText(this@MainActivity, "You must connect first", Toast.LENGTH_SHORT)
-                    toast.setGravity(Gravity.TOP, 0,900)
+                    toast.setGravity(Gravity.TOP, 0,800)
                     toast.show()
                 }
             }
