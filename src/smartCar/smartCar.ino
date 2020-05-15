@@ -7,8 +7,8 @@
 #include <ESPmDNS.h>
 
 //VARIABLES FOR WEBSERVER
-const char* ssid = "Yake";
-const char* password = "403ccad8";
+const char* ssid = "";
+const char* password = "";
 WebServer server(12345);
 WiFiClient client;
 String header;
@@ -18,10 +18,11 @@ const int FRONT_TRIGGER_PIN = 4;
 const int FRONT_ECHO_PIN = 2; 
 
 //Variables for statistics
-int distanceToDrive = 100;
-int correctHeadingDriven;
-int incorrectHeadingDriven;
-int correctHeading;
+int originalDistance = 200;
+int distanceToDrive = originalDistance;
+int correctHeadingDriven = 0;
+int incorrectHeadingDriven = 0;
+int correctHeading = 0;
 
 //SMARTCAR VARIABLES
 const unsigned int FRONT_MAX_DISTANCE = 100;
@@ -29,7 +30,8 @@ SR04 front_sensor(FRONT_TRIGGER_PIN, FRONT_ECHO_PIN, FRONT_MAX_DISTANCE);
 BrushedMotor leftMotor(smartcarlib::pins::v2::leftMotorPins);
 BrushedMotor rightMotor(smartcarlib::pins::v2::rightMotorPins);
 DifferentialControl control(leftMotor, rightMotor);
-GY50 gyroscope(37);
+int GYRO_OFFSET;
+GY50 gyroscope(GYRO_OFFSET);
 const auto pulsesPerMeter = 600;
 DirectionlessOdometer leftOdometer(
     smartcarlib::pins::v2::leftOdometerPin, []() { leftOdometer.update(); }, pulsesPerMeter);
@@ -53,6 +55,8 @@ void setup()
 
     //The speed of the car is in m/s.
     car.enableCruiseControl();
+
+    GYRO_OFFSET = gyroscope.getOffset();
 
     correctHeading = gyroscope.getHeading();
 
@@ -299,8 +303,12 @@ void checkDestination(){
   }
 
   int currentHeading = gyroscope.getHeading();
-  Serial.println(currentHeading);
-  Serial.println(car.getDistance());
+  Serial.println("Heading: " +currentHeading);
+  Serial.println("Distance: "+car.getDistance());
+  Serial.println("correct: " + correctHeadingDriven);
+  Serial.println("incorrect: " + incorrectHeadingDriven);
+  Serial.println("total: " + distanceToDrive);
+  delay(1000);
 
   if(currentHeading > (correctHeading-10) && currentHeading < (correctHeading+10)){
     correctHeadingDriven = car.getDistance() - incorrectHeadingDriven;
