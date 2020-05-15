@@ -30,8 +30,7 @@ SR04 front_sensor(FRONT_TRIGGER_PIN, FRONT_ECHO_PIN, FRONT_MAX_DISTANCE);
 BrushedMotor leftMotor(smartcarlib::pins::v2::leftMotorPins);
 BrushedMotor rightMotor(smartcarlib::pins::v2::rightMotorPins);
 DifferentialControl control(leftMotor, rightMotor);
-int GYRO_OFFSET;
-GY50 gyroscope(GYRO_OFFSET);
+GY50 gyroscope(2);
 const auto pulsesPerMeter = 600;
 DirectionlessOdometer leftOdometer(
     smartcarlib::pins::v2::leftOdometerPin, []() { leftOdometer.update(); }, pulsesPerMeter);
@@ -55,8 +54,6 @@ void setup()
 
     //The speed of the car is in m/s.
     car.enableCruiseControl();
-
-    GYRO_OFFSET = gyroscope.getOffset();
 
     correctHeading = gyroscope.getHeading();
 
