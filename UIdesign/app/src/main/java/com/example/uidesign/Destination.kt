@@ -6,6 +6,12 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 
 
 class Destination : AppCompatActivity() {
@@ -21,14 +27,17 @@ class Destination : AppCompatActivity() {
 
 
         destination_1.setOnClickListener {
+            sendRequest("AutoOn?distance="+"572")
             val intent2 = Intent(this, MenuActivity::class.java)
             startActivity(intent2)
         }
         destination_2.setOnClickListener {
+            sendRequest("AutoOn?distance="+"100")
             val intent2 = Intent(this, MenuActivity::class.java)
             startActivity(intent2)
         }
         destination_3.setOnClickListener {
+            sendRequest("AutoOn?distance="+"100")
             val intent2 = Intent(this, MenuActivity::class.java)
             startActivity(intent2)
         }
@@ -46,5 +55,26 @@ class Destination : AppCompatActivity() {
         }
 
 
+    }
+
+    fun sendRequest(endpoint : String){
+        val queue: RequestQueue = Volley.newRequestQueue(applicationContext)
+        val url = "http://213.80.116.220:12345/$endpoint"
+        val stringRequest =
+            StringRequest(Request.Method.GET, url, object : Response.Listener<String?> {
+                override fun onResponse(response: String?) {
+                    Toast.makeText(
+                        applicationContext,
+                        "Command was successful !",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }, object : Response.ErrorListener {
+                override fun onErrorResponse(error: VolleyError?) {
+                    Toast.makeText(applicationContext, "Error occurred", Toast.LENGTH_LONG)
+                        .show()
+                }
+            })
+        queue.add(stringRequest)
     }
 }
