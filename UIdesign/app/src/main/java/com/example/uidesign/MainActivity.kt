@@ -6,6 +6,12 @@ import android.os.Bundle
 import android.view.Gravity
 import android.widget.Button
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        if(getMyVariableAgain()==1){
+        if (getMyVariableAgain() == 1) {
 
             var again = findViewById(R.id.onoff) as Button;
             again.setBackgroundResource(R.drawable.transparent);
@@ -61,21 +67,27 @@ class MainActivity : AppCompatActivity() {
 
 
                     val intent = Intent(this, Destination::class.java)
-                    val toast = Toast.makeText(this@MainActivity, "You must connect first", Toast.LENGTH_SHORT)
-                    toast.setGravity(Gravity.TOP, 0,800)
+                    val toast = Toast.makeText(
+                        this@MainActivity,
+                        "You must connect first",
+                        Toast.LENGTH_SHORT
+                    )
+                    toast.setGravity(Gravity.TOP, 0, 800)
                     toast.show()
                 }
             }
-            //sendRequest("disconnect")
+            sendRequest("disconnect")
 
         }
 
 
-        start.setOnClickListener{
-            if(getMyVariableAgain()!=1) {
-                val toast = Toast.makeText(this@MainActivity, "You must connect first", Toast.LENGTH_SHORT)
-                toast.setGravity(Gravity.TOP, 0,900)
-                toast.show()            }else{
+        start.setOnClickListener {
+            if (getMyVariableAgain() != 1) {
+                val toast =
+                    Toast.makeText(this@MainActivity, "You must connect first", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.TOP, 0, 900)
+                toast.show()
+            } else {
                 if (connectBackround == 2 && offapp == 1) {
 
                     button_change.setBackgroundResource(R.drawable.transparent);
@@ -87,13 +99,15 @@ class MainActivity : AppCompatActivity() {
                     intent.putExtra("FirstVariable", offapp)
                     startActivity(intent)
 
-                } else{
-                    val toast = Toast.makeText(this@MainActivity, "You must connect first", Toast.LENGTH_SHORT)
-                    toast.setGravity(Gravity.TOP, 0,900)
+                } else {
+                    val toast = Toast.makeText(
+                        this@MainActivity,
+                        "You must connect first",
+                        Toast.LENGTH_SHORT
+                    )
+                    toast.setGravity(Gravity.TOP, 0, 900)
                     toast.show()
                 }
-
-
 
 
             }
@@ -118,13 +132,13 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("FirstVariable", offapp)
                 startActivity(intent)
             }
-            //sendRequest("")
+            sendRequest("")
         }
 
 
     }
-/*
-        fun sendRequest(endpoint : String){
+
+        fun sendRequest(endpoint: String) {
             val queue: RequestQueue = Volley.newRequestQueue(applicationContext)
             val url = "http://192.168.43.199:12345/$endpoint"
             val stringRequest =
@@ -143,7 +157,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 })
             queue.add(stringRequest)
-        */
+
+        }
     }
 
 
