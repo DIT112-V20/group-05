@@ -7,19 +7,16 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.Toast
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
+
 
 class ManualActivity2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manual2)
+		
+		
+		val request = RequestHandler(applicationContext)
 
 
 
@@ -77,7 +74,7 @@ class ManualActivity2 : AppCompatActivity() {
                 button_change.setBackgroundResource(R.drawable.chosengear);
                 gear1background = 1;
             }
-             sendRequest("forward")
+             request.sendRequest("forward")
         }
 
         backward.setOnClickListener{
@@ -86,16 +83,16 @@ class ManualActivity2 : AppCompatActivity() {
                 button_change.setBackgroundResource(R.drawable.chosengear);
                 gear1background = 1;
             }
-            sendRequest("backward")
+            request.sendRequest("backward")
         }
 
         right.setOnTouchListener(View.OnTouchListener { view, motionEvent ->
             when (motionEvent.action){
                 MotionEvent.ACTION_DOWN -> {
-                    sendRequest("turnRight")
+                    request.sendRequest("turnRight")
                 }
                 MotionEvent.ACTION_UP -> {
-                    sendRequest("resetAngle")
+                    request.sendRequest("resetAngle")
                 }
             }
             return@OnTouchListener true
@@ -104,10 +101,10 @@ class ManualActivity2 : AppCompatActivity() {
         left.setOnTouchListener(View.OnTouchListener { view, motionEvent ->
             when (motionEvent.action){
                 MotionEvent.ACTION_DOWN -> {
-                     sendRequest("turnLeft")
+                     request.sendRequest("turnLeft")
                 }
                 MotionEvent.ACTION_UP -> {
-                     sendRequest("resetAngle")
+                     request.sendRequest("resetAngle")
                 }
             }
             return@OnTouchListener true
@@ -116,7 +113,7 @@ class ManualActivity2 : AppCompatActivity() {
 
 
         stop.setOnClickListener {
-             sendRequest("stop")
+             request.sendRequest("stop")
         }
 
 
@@ -133,7 +130,7 @@ class ManualActivity2 : AppCompatActivity() {
 
                 }
             }
-            sendRequest("setGear?gear=1")
+            request.sendRequest("setGear?gear=1")
         }
 
 
@@ -149,7 +146,7 @@ class ManualActivity2 : AppCompatActivity() {
 
                 }
             }
-            sendRequest("setGear?gear=2")
+            request.sendRequest("setGear?gear=2")
         }
 
 
@@ -165,15 +162,15 @@ class ManualActivity2 : AppCompatActivity() {
 
                 }
             }
-            sendRequest("setGear?gear=3")
+            request.sendRequest("setGear?gear=3")
         }
 
         plus.setOnClickListener {
-             sendRequest("increaseSpeed")
+             request.sendRequest("increaseSpeed")
         }
 
         minus.setOnClickListener {
-            sendRequest("decreaseSpeed")
+            request.sendRequest("decreaseSpeed")
         }
 
 
@@ -184,28 +181,7 @@ class ManualActivity2 : AppCompatActivity() {
 
 
 
-fun sendRequest(endpoint : String){
-    val queue: RequestQueue = Volley.newRequestQueue(this)
-    val url = "http://213.80.116.220:12345/$endpoint"
-    val stringRequest =
-        StringRequest(Request.Method.GET, url, object : Response.Listener<String?> {
-            override fun onResponse(response: String?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Command was successful !",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        }, object : Response.ErrorListener {
-            override fun onErrorResponse(error: VolleyError?) {
-                Toast.makeText(applicationContext, "Error occurred", Toast.LENGTH_LONG)
-                    .show()
-            }
-        })
-    queue.add(stringRequest)
 
-
-}
 
 
 }

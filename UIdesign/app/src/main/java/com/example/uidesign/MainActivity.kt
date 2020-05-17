@@ -6,18 +6,15 @@ import android.os.Bundle
 import android.view.Gravity
 import android.widget.Button
 import android.widget.Toast
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
+
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+		
+		val request = RequestHandler(applicationContext)
 
         var connectBackround: Int = 2;
         var disconnectBackround: Int = 2;
@@ -76,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                     toast.show()
                 }
             }
-            sendRequest("disconnect")
+            request.sendRequest("disconnect")
 
         }
 
@@ -132,33 +129,12 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("FirstVariable", offapp)
                 startActivity(intent)
             }
-            sendRequest("")
+            request.sendRequest("")
         }
 
 
     }
 
-        fun sendRequest(endpoint: String) {
-            val queue: RequestQueue = Volley.newRequestQueue(applicationContext)
-            val url = "http://192.168.43.199:12345/$endpoint"
-            val stringRequest =
-                StringRequest(Request.Method.GET, url, object : Response.Listener<String?> {
-                    override fun onResponse(response: String?) {
-                        Toast.makeText(
-                            applicationContext,
-                            "Command was successful !",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                }, object : Response.ErrorListener {
-                    override fun onErrorResponse(error: VolleyError?) {
-                        Toast.makeText(applicationContext, "Error occurred", Toast.LENGTH_LONG)
-                            .show()
-                    }
-                })
-            queue.add(stringRequest)
-
-        }
     }
 
 
