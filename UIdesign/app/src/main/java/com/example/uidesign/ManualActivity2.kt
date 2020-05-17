@@ -14,6 +14,9 @@ class ManualActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manual2)
+		
+		
+		val request = RequestHandler(applicationContext)
 
 
 
@@ -71,7 +74,7 @@ class ManualActivity2 : AppCompatActivity() {
                 button_change.setBackgroundResource(R.drawable.chosengear);
                 gear1background = 1;
             }
-             sendRequest("forward")
+             request.sendRequest("forward")
         }
 
         backward.setOnClickListener{
@@ -80,16 +83,16 @@ class ManualActivity2 : AppCompatActivity() {
                 button_change.setBackgroundResource(R.drawable.chosengear);
                 gear1background = 1;
             }
-            sendRequest("backward")
+            request.sendRequest("backward")
         }
 
         right.setOnTouchListener(View.OnTouchListener { view, motionEvent ->
             when (motionEvent.action){
                 MotionEvent.ACTION_DOWN -> {
-                    sendRequest("turnRight")
+                    request.sendRequest("turnRight")
                 }
                 MotionEvent.ACTION_UP -> {
-                    sendRequest("resetAngle")
+                    request.sendRequest("resetAngle")
                 }
             }
             return@OnTouchListener true
@@ -98,10 +101,10 @@ class ManualActivity2 : AppCompatActivity() {
         left.setOnTouchListener(View.OnTouchListener { view, motionEvent ->
             when (motionEvent.action){
                 MotionEvent.ACTION_DOWN -> {
-                     sendRequest("turnLeft")
+                     request.sendRequest("turnLeft")
                 }
                 MotionEvent.ACTION_UP -> {
-                     sendRequest("resetAngle")
+                     request.sendRequest("resetAngle")
                 }
             }
             return@OnTouchListener true
@@ -110,7 +113,7 @@ class ManualActivity2 : AppCompatActivity() {
 
 
         stop.setOnClickListener {
-             sendRequest("stop")
+             request.sendRequest("stop")
         }
 
 
@@ -127,7 +130,7 @@ class ManualActivity2 : AppCompatActivity() {
 
                 }
             }
-            sendRequest("setGear?gear=1")
+            request.sendRequest("setGear?gear=1")
         }
 
 
@@ -143,7 +146,7 @@ class ManualActivity2 : AppCompatActivity() {
 
                 }
             }
-            sendRequest("setGear?gear=2")
+            request.sendRequest("setGear?gear=2")
         }
 
 
@@ -159,15 +162,15 @@ class ManualActivity2 : AppCompatActivity() {
 
                 }
             }
-            sendRequest("setGear?gear=3")
+            request.sendRequest("setGear?gear=3")
         }
 
         plus.setOnClickListener {
-             sendRequest("increaseSpeed")
+             request.sendRequest("increaseSpeed")
         }
 
         minus.setOnClickListener {
-            sendRequest("decreaseSpeed")
+            request.sendRequest("decreaseSpeed")
         }
 
 

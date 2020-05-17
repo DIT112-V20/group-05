@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+		
+		val request = RequestHandler(applicationContext)
 
         var connectBackround: Int = 2;
         var disconnectBackround: Int = 2;
@@ -71,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                     toast.show()
                 }
             }
-            sendRequest("disconnect")
+            request.sendRequest("disconnect")
 
         }
 
@@ -127,7 +129,7 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("FirstVariable", offapp)
                 startActivity(intent)
             }
-            sendRequest("")
+            request.sendRequest("")
         }
 
 
