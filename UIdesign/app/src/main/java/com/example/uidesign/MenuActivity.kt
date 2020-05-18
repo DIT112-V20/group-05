@@ -29,6 +29,18 @@ class MenuActivity : AppCompatActivity() {
 
 
 
+        // this gets the information from Destination activity
+        fun button(): Int {
+            if (intent != null) {
+                if (intent.extras != null) {
+                    return intent.extras!!.getInt("toMenu")
+                }
+            }
+            return 109 // default
+        }
+
+
+
 // this gives the signal to manual
 
         manual.setOnClickListener {
