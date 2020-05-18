@@ -8,6 +8,7 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import android.preference.PreferenceManager
 
 class RequestHandler(val mContext: Context) {
 
@@ -35,20 +36,20 @@ class RequestHandler(val mContext: Context) {
 
     }
 
-    fun getRequest(endpoint : String) : String{
+    fun getRequest(endpoint : String){
         val queue: RequestQueue = VolleySingleton.getInstance(mContext).requestQueue
         val url = "http://213.80.116.220:12345/$endpoint"
-        var reply : String = ""
         val stringRequest =
             StringRequest(Request.Method.GET, url, object : Response.Listener<String?> {
                 override fun onResponse(response: String?) {
-                    Toast.makeText(
+				
+				sharedResponse(response.toString())
+				
+                    /*Toast.makeText(
                         mContext,
                         response,
                         Toast.LENGTH_LONG
-                    ).show()
-                    if(response != null)
-                        reply = response
+                    ).show()*/
                 }
             }, object : Response.ErrorListener {
                 override fun onErrorResponse(error: VolleyError?) {
@@ -57,6 +58,12 @@ class RequestHandler(val mContext: Context) {
                 }
             })
         queue.add(stringRequest)
-        return reply
+    }
+	
+	private fun sharedResponse(response: String) {
+        val m = PreferenceManager.getDefaultSharedPreferences(mContext)
+        val editor = m.edit()
+        editor.putString("Response", response)
+        editor.commit()
     }
 }
