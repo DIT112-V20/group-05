@@ -27,6 +27,96 @@
         android:focusableInTouchMode="false"
         />
 
+    <Button
+        android:id="@+id/DistanceLeft"
+        android:layout_width="243dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="280dp"
+        android:background="@drawable/statslayout"
+        android:fontFamily="sans-serif-black"
+        android:rotation="0"
+        android:text="To Destination: "
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="#BBFFFFFF"
+        android:textSize="20dp" />
+
+
+    <EditText
+        android:id="@+id/editTextCm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginRight="18dp"
+        android:background="@drawable/statslayout"
+        android:ems="10"
+        android:hint="Cm"
+        android:inputType="number"
+        android:textColorHint="#BBFFFFFF" />
+
+    <Button
+        android:id="@+id/Time"
+        android:layout_width="243dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="440dp"
+        android:background="@drawable/statslayout"
+        android:fontFamily="sans-serif-black"
+        android:rotation="0"
+        android:text="Time: "
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="#BBFFFFFF"
+        android:textSize="20dp" />
+
+
+    <EditText
+        android:id="@+id/editTextTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="440dp"
+        android:layout_marginRight="18dp"
+        android:background="@drawable/statslayout"
+        android:ems="10"
+        android:hint="Sec"
+        android:inputType="number"
+        android:textColorHint="#BBFFFFFF" />
+
+    <Button
+        android:id="@+id/Speed"
+        android:layout_width="243dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="360dp"
+        android:background="@drawable/statslayout"
+        android:fontFamily="sans-serif-black"
+        android:rotation="0"
+        android:text="Speed: "
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="#BBFFFFFF"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/editTextSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="360dp"
+        android:layout_marginRight="18dp"
+        android:background="@drawable/statslayout"
+        android:ems="10"
+        android:hint="Cm/S"
+        android:inputType="number"
+        android:textColorHint="#BBFFFFFF" />
+
+
+
+
+
 
     <ImageButton
 
@@ -36,7 +126,6 @@
         android:layout_gravity="left"
         android:layout_marginLeft="6dp"
         android:layout_marginTop="10dp"
-
         android:background="@drawable/back"
         android:fontFamily="sans-serif-black"
         android:text="@string/Manual"
@@ -47,14 +136,15 @@
 
     <Button
         android:id="@+id/autoreahced"
-        android:layout_width="378dp"
-        android:layout_height="81dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="300dp"
+        android:layout_width="307dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="550dp"
+        android:layout_marginRight="60dp"
         android:background="@drawable/colorchange"
+        android:fontFamily="sans-serif-black"
         android:rotation="0"
         android:text="Destination Reached"
-        android:fontFamily="sans-serif-black"
         android:textAllCaps="false"
         android:textColor="#BB070707"
         android:textSize="25dp" />
