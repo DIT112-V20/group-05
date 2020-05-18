@@ -17,4 +17,14 @@ class Data constructor(val context : Context) {
         request.getRequest("sensor")
         return getResponse()
     }
+	
+	fun getSpeed() : String? {
+        request.getRequest("sensor")
+        return getResponse()
+    }
+	
+	fun getTime() : String? {
+        request.getRequest("sensor")
+        return getResponse()
+    }
 }
