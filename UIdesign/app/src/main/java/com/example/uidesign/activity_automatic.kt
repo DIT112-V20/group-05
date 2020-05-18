@@ -60,7 +60,7 @@ class activity_automatic : AppCompatActivity() {
                 
 				cm.setText(data.getDistance()+" Cm")
 
-                handler.postDelayed(this, delay.toLong())
+                handler.postDelayed(this, 500)
             }
         }, 700)
 		
@@ -70,7 +70,7 @@ class activity_automatic : AppCompatActivity() {
                 
 				speedS.setText(data.getSpeed()+" Cm/Sec")
 
-                handler.postDelayed(this, delay.toLong())
+                handler.postDelayed(this, 500)
             }
         }, 1000)
 		
