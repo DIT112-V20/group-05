@@ -20,6 +20,27 @@ class Destination : AppCompatActivity() {
         val destination_3 = findViewById(R.id.destination3) as Button
 
 
+
+
+
+
+        destination_1.setOnClickListener {
+            val intent2 = Intent(this, MenuActivity::class.java)
+            intent.putExtra("toMenu", 572)
+            startActivity(intent2)
+        }
+        destination_2.setOnClickListener {
+            val intent2 = Intent(this, MenuActivity::class.java)
+            intent.putExtra("toMenu", 56)
+            startActivity(intent2)
+        }
+        destination_3.setOnClickListener {
+            val intent2 = Intent(this, MenuActivity::class.java)
+            intent.putExtra("toMenu", 100)
+            startActivity(intent2)
+        }
+
+
         destination_1.setOnClickListener {
             sendRequest("AutoOn?distance="+"572")
             val intent2 = Intent(this, MenuActivity::class.java)
