@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import android.os.Handler
 
 class activity_automatic : AppCompatActivity() {
 
@@ -14,8 +15,7 @@ class activity_automatic : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_automatic)
 
-
-
+		val data : Data = Data(applicationContext)
 
         val distanceLeft =findViewById(R.id.DistanceLeft)as Button
         val speed =findViewById(R.id.Speed)as Button
@@ -51,6 +51,19 @@ class activity_automatic : AppCompatActivity() {
             val back = Intent(this, MenuActivity::class.java)
             startActivity(back)
         }
+		
+		
+		val handler = Handler()
+        val delay = 500 //milliseconds
+
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                
+				
+
+                handler.postDelayed(this, delay.toLong())
+            }
+        }, delay.toLong())
 
     }
 
