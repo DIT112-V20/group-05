@@ -42,17 +42,17 @@ class Destination : AppCompatActivity() {
 
 
         destination_1.setOnClickListener {
-            sendRequest("AutoOn?distance="+"572")
+          //  sendRequest("AutoOn?distance="+"572")
             val intent2 = Intent(this, MenuActivity::class.java)
             startActivity(intent2)
         }
         destination_2.setOnClickListener {
-            sendRequest("AutoOn?distance="+"100")
+          //  sendRequest("AutoOn?distance="+"100")
             val intent2 = Intent(this, MenuActivity::class.java)
             startActivity(intent2)
         }
         destination_3.setOnClickListener {
-            sendRequest("AutoOn?distance="+"100")
+        //    sendRequest("AutoOn?distance="+"100")
             val intent2 = Intent(this, MenuActivity::class.java)
             startActivity(intent2)
         }
