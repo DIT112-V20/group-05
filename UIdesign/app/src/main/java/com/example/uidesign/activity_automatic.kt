@@ -54,16 +54,26 @@ class activity_automatic : AppCompatActivity() {
 		
 		
 		val handler = Handler()
-        val delay = 500 //milliseconds
 
         handler.postDelayed(object : Runnable {
             override fun run() {
                 
-				
+				cm.setText(data.getDistance()+" Cm")
 
                 handler.postDelayed(this, delay.toLong())
             }
-        }, delay.toLong())
+        }, 700)
+		
+
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                
+				speedS.setText(data.getSpeed()+" Cm/Sec")
+
+                handler.postDelayed(this, delay.toLong())
+            }
+        }, 1000)
+		
 
     }
 
