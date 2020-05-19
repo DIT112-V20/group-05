@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                 btn_click_me.setOnClickListener {
 
 
-                    val intent = Intent(this, Destination::class.java)
+                    val intent = Intent(this, Destination2::class.java)
                     val toast = Toast.makeText(
                         this@MainActivity,
                         "You must connect first",
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                     btn_click_me = findViewById(R.id.getstarted) as Button
 
 
-                    val intent = Intent(this, Destination::class.java)
+                    val intent = Intent(this, Destination2::class.java)
 
                     intent.putExtra("FirstVariable", offapp)
                     startActivity(intent)
@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
 
             btn_click_me.setOnClickListener {
 
-                val intent = Intent(this, Destination::class.java)
+                val intent = Intent(this, Destination2::class.java)
 
                 intent.putExtra("FirstVariable", offapp)
                 startActivity(intent)

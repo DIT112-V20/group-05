@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F7292E37"
+    tools:context=".Destination">
+
+
+    <EditText
+        android:layout_width="257dp"
+        android:background="@android:color/transparent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80sp"
+        android:layout_marginTop="60dp"
+        android:text="Destination"
+        android:gravity="center"
+        android:textSize="37dp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="#E5BC9D2E"
+        android:focusableInTouchMode="false"
+        />
+
+
+    <Button
+        android:id="@+id/Ok"
+        android:layout_width="378dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="550dp"
+        android:layout_marginLeft="18dp"
+        android:layout_gravity="center"
+        android:background="@drawable/colorchange"
+        android:fontFamily="sans-serif-black"
+        android:text="OK"
+        android:textAllCaps="false"
+        android:textColor="#BB070707"
+        android:textSize="25dp"
+        />
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="10dp"
+
+        android:background="@drawable/pngguru"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/Manual"
+        android:textAllCaps="false"
+        android:textColor="#BB070707"
+        android:textSize="25sp" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="349dp"
+        android:layout_height="229dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="186dp"
+        android:textColor="#E5BC9D2E" />
+
+    <SearchView
+        android:id="@+id/searchBox"
+        android:layout_width="348dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="448dp"
+        android:background="@drawable/colorchange"
+        android:textColor="#BB070707" />
+
+</RelativeLayout>
