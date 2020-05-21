@@ -58,21 +58,13 @@ class activity_automatic : AppCompatActivity() {
         handler.postDelayed(object : Runnable {
             override fun run() {
                 
-				cm.setText(data.getDistance()+" Cm")
+				cm.setText(data.findDistance()+" Cm")
+				speedS.setText(data.findSpeed()+" Cm/S")
 
                 handler.postDelayed(this, 500)
             }
-        }, 700)
-		
-
-        handler.postDelayed(object : Runnable {
-            override fun run() {
-                
-				speedS.setText(data.getSpeed()+" Cm/Sec")
-
-                handler.postDelayed(this, 500)
-            }
-        }, 1000)
+        }, 500)
+	
 		
 
     }
