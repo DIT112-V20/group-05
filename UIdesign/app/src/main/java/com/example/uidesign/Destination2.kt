@@ -35,6 +35,21 @@ class Destination2 : AppCompatActivity() {
         // adapt locations to the Listview
         mListView.adapter = arrayAdapter
 
+        // searchView connect to Listview
+        searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String): Boolean {
+
+                arrayAdapter.filter.filter(newText)
+                return true
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+        })
+
+
         //Switch
         mListView.setOnItemClickListener {
             adapterView, view, i, l ->
