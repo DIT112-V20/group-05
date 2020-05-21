@@ -3,6 +3,7 @@ package com.example.uidesign
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.*
 
 
@@ -24,8 +25,8 @@ class Destination2 : AppCompatActivity() {
         // List and adapter
         val arrayAdapter: ArrayAdapter<*>
         val locations = arrayOf(
-            "ICA 100m", "IKEA 200m", "Chalmers 300m", "Elgiganten 400m", "Nordstan 500m",
-            "Lindholmen 600m", "Stockholm 700m", "New York 800m", "Home 900m"
+            "ICA", "IKEA", "Chalmers", "Elgiganten", "Nordstan",
+            "Lindholmen", "Stockholm", "New York", "Home"
         )
 
         // View the items in "locations in the ListView
@@ -35,50 +36,115 @@ class Destination2 : AppCompatActivity() {
         // adapt locations to the Listview
         mListView.adapter = arrayAdapter
 
-        //Switch
-        mListView.setOnItemClickListener {
-            adapterView, view, i, l ->
-            if (i == 0) {
-                distance = 100
-                Toast.makeText(this@Destination2, locations[0] , Toast.LENGTH_SHORT).show()
-            }
-            if (i == 1) {
-                distance = 100
-                Toast.makeText(this@Destination2, locations[1] , Toast.LENGTH_SHORT).show()
-            }
-            if (i == 2) {
-                distance = 200
-                Toast.makeText(this@Destination2, locations[2], Toast.LENGTH_SHORT).show()
-            }
-            if (i == 3) {
-                distance = 300
-                Toast.makeText(this@Destination2, locations[3], Toast.LENGTH_SHORT).show()
-            }
-            if (i == 4) {
-                distance = 400
-                Toast.makeText(this@Destination2, locations[4], Toast.LENGTH_SHORT).show()
-            }
-            if (i == 5) {
-                distance = 500
-                Toast.makeText(this@Destination2, locations[5], Toast.LENGTH_SHORT).show()
-            }
-            if (i == 6) {
-                distance = 600
-                Toast.makeText(this@Destination2, locations[6], Toast.LENGTH_SHORT).show()
-            }
-            if (i == 7) {
-                distance = 700
-                Toast.makeText(this@Destination2, locations[7] , Toast.LENGTH_SHORT).show()
-            }
-            if (i == 8) {
-                distance = 800
-                Toast.makeText(this@Destination2, locations[8] , Toast.LENGTH_SHORT).show()
-            }
-            if (i == 9) {
-                distance = 900
-                Toast.makeText(this@Destination2, locations[9], Toast.LENGTH_SHORT).show()
+        // searchView connect to Listview
+        searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String): Boolean {
+
+                arrayAdapter.filter.filter(newText)
+                return true
             }
 
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+        })
+
+
+
+        //Switch
+        mListView.setOnItemClickListener {
+                adapterView, view, i, l ->
+            if (i == 0) {
+                distance = 100
+                val toast = Toast.makeText(
+                    this,
+                    locations[i]+"\t\t=\t\t"+distance+"  meters",
+                    Toast.LENGTH_SHORT
+                )
+                toast.setGravity(Gravity.TOP, 0, 1280)
+                toast.show()
+            }
+            if (i == 1) {
+                distance = 200
+                val toast = Toast.makeText(
+                    this,
+                    locations[i]+"\t\t=\t\t"+distance+"  meters",
+                    Toast.LENGTH_SHORT
+                )
+                toast.setGravity(Gravity.TOP, 0, 1280)
+                toast.show()
+            }
+            if (i == 2) {
+                distance = 300
+                val toast = Toast.makeText(
+                    this,
+                    locations[i]+"\t\t=\t\t"+distance+"  meters",
+                    Toast.LENGTH_SHORT
+                )
+                toast.setGravity(Gravity.TOP, 0, 1280)
+                toast.show()
+            }
+            if (i == 3) {
+                distance = 400
+                val toast = Toast.makeText(
+                    this,
+                    locations[i]+"\t\t=\t\t"+distance+"  meters",
+                    Toast.LENGTH_SHORT
+                )
+                toast.setGravity(Gravity.TOP, 0, 1280)
+                toast.show()
+            }
+            if (i == 4) {
+                distance = 500
+                val toast = Toast.makeText(
+                    this,
+                    locations[i]+"\t\t=\t\t"+distance+"  meters",
+                    Toast.LENGTH_SHORT
+                )
+                toast.setGravity(Gravity.TOP, 0, 1280)
+                toast.show()
+            }
+            if (i == 5) {
+                distance = 600
+                val toast = Toast.makeText(
+                    this,
+                    locations[i]+"\t\t=\t\t"+distance+"  meters",
+                    Toast.LENGTH_SHORT
+                )
+                toast.setGravity(Gravity.TOP, 0, 1280)
+                toast.show()
+            }
+            if (i == 6) {
+                distance = 700
+                val toast = Toast.makeText(
+                    this,
+                    locations[i]+"\t\t=\t\t"+distance+"  meters",
+                    Toast.LENGTH_SHORT
+                )
+                toast.setGravity(Gravity.TOP, 0, 1280)
+                toast.show()
+            }
+            if (i == 7) {
+                distance = 800
+                val toast = Toast.makeText(
+                    this,
+                    locations[i]+"\t\t=\t\t"+distance+"  meters",
+                    Toast.LENGTH_SHORT
+                )
+                toast.setGravity(Gravity.TOP, 0, 1280)
+                toast.show()
+            }
+            if (i == 8) {
+                distance = 900
+                val toast = Toast.makeText(
+                    this,
+                    locations[i]+"\t\t=\t\t"+distance+"  meters",
+                    Toast.LENGTH_SHORT
+                )
+                toast.setGravity(Gravity.TOP, 0, 1280)
+                toast.show()
+            }
         }
 
         // Click on OK button

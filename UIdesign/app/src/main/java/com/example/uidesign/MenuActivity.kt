@@ -15,8 +15,7 @@ class MenuActivity : AppCompatActivity() {
 
         var finalresult = 0
         val manual = findViewById<Button>(R.id.manual)
-
-
+        val request = RequestHandler(applicationContext)
 
         val home = findViewById(R.id.home) as ImageButton
 
@@ -26,8 +25,6 @@ class MenuActivity : AppCompatActivity() {
             startActivity(home)
 
         }
-
-
 
         // this gets the information from Destination activity
         fun button(): Int {
@@ -39,20 +36,19 @@ class MenuActivity : AppCompatActivity() {
             return 109 // default
         }
 
-
-
-// this gives the signal to manual
-
+        // this gives the signal to manual
         manual.setOnClickListener {
             val intent2 = Intent(this, ManualActivity2::class.java)
+            var distance = button().toString()
+            request.sendRequest("endpoint?"+ distance)
             startActivity(intent2)
         }
 
-
-// this gives the signal to automatic
-
+        // this gives the signal to automatic
         automatic.setOnClickListener {
             val intent2 = Intent(this, activity_automatic::class.java)
+            var distance = button().toString()
+            request.sendRequest("endpoint?"+ distance)
             startActivity(intent2)
         }
 
