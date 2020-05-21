@@ -146,6 +146,7 @@ void webserverInit() {
   server.on("/increase", increaseSpeed);
   server.on("/decrease", decreaseSpeed);
   server.on("/destinationReached", destinationReached);
+  server.on("/sendInfo", sendInfo);
 
   //Print local IP address to the serial monitor and start the web server
   Serial.println("");
@@ -205,6 +206,12 @@ void resetAngle(){
 
 void distanceSubmitted(){
   distanceToDrive = server.arg(0).toInt();
+}
+
+void sendInfo(){
+  int speedNow = car.getSpeed();
+  int distanceNow = distanceToDrive;
+  server.send(200, "text/plain", speedNow+"/"+distanceNow);
 }
 
 void stopCar(){
