@@ -24,7 +24,7 @@
         android:textSize="25dp" />
 
     <ImageButton
-        android:id="@+id/toautomatic"
+        android:id="@+id/toautomaticnew"
         android:layout_width="46dp"
         android:layout_height="46dp"
         android:layout_gravity="left"

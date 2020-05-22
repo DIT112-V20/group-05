@@ -14,18 +14,29 @@ class ManualActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manual2)
-		
-		
-		val request = RequestHandler(applicationContext)
 
 
+        val request = RequestHandler(applicationContext)
+
+        // this gets the information from automatic1
+        fun distance(): Int {
+            if (intent != null) {
+                if (intent.extras != null) {
+                    return intent.extras!!.getInt("toManual")
+                }
+            }
+            return 109 // default
+        }
 
 
-        val drive_automatic = findViewById(R.id.toautomatic) as ImageButton
+// this will send the distance we got from automatic1 to automatic2
+
+        val drive_automatic = findViewById(R.id.toautomaticnew) as ImageButton
 
         drive_automatic.setOnClickListener {
-            val autodrive = Intent(this, MenuActivity::class.java)
-            startActivity(autodrive)
+            val autodrive2 = Intent(this, automaticfrommanual::class.java)
+            autodrive2.putExtra("toAutomatic2", distance())
+            startActivity(autodrive2)
         }
 
 
@@ -74,7 +85,7 @@ class ManualActivity2 : AppCompatActivity() {
                 button_change.setBackgroundResource(R.drawable.chosengear);
                 gear1background = 1;
             }
-             request.sendRequest("forward")
+            request.sendRequest("forward")
         }
 
         backward.setOnClickListener{
@@ -101,10 +112,10 @@ class ManualActivity2 : AppCompatActivity() {
         left.setOnTouchListener(View.OnTouchListener { view, motionEvent ->
             when (motionEvent.action){
                 MotionEvent.ACTION_DOWN -> {
-                     request.sendRequest("turnLeft")
+                    request.sendRequest("turnLeft")
                 }
                 MotionEvent.ACTION_UP -> {
-                     request.sendRequest("resetAngle")
+                    request.sendRequest("resetAngle")
                 }
             }
             return@OnTouchListener true
@@ -113,7 +124,7 @@ class ManualActivity2 : AppCompatActivity() {
 
 
         stop.setOnClickListener {
-             request.sendRequest("stop")
+            request.sendRequest("stop")
         }
 
 
@@ -166,7 +177,7 @@ class ManualActivity2 : AppCompatActivity() {
         }
 
         plus.setOnClickListener {
-             request.sendRequest("increaseSpeed")
+            request.sendRequest("increaseSpeed")
         }
 
         minus.setOnClickListener {
@@ -185,6 +196,5 @@ class ManualActivity2 : AppCompatActivity() {
 
 
 }
-
 
 
