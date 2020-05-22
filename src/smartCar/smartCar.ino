@@ -57,9 +57,7 @@ void setup()
 
     //Get the initial heading of the car on setup
     correctHeading = gyroscope.getHeading();
-
-    car.setSpeed(CURRENT_SPEED);
-
+    
     //Setup the webserver
     webserverInit();
 }
@@ -72,8 +70,6 @@ void loop()
     if(controllerMode == false){
       automatedControl();
     }
-
-    Serial.println(CURRENT_SPEED);
     
     //Initialize the pin
     pinMode(LED_BUILTIN, OUTPUT);
@@ -82,7 +78,7 @@ void loop()
     webserverCreation();
 
     //Check if destination has been reached
-    checkDestination();
+    //checkDestination();
 }
 
 //Automated controls (WIP - Work in Progress)
@@ -322,7 +318,7 @@ void checkDestination(){
     CURRENT_SPEED = 0;
     car.setSpeed(CURRENT_SPEED);
   }
-  
+    
   int currentHeading = gyroscope.getHeading();
 
   if(currentHeading > (correctHeading-10) && currentHeading < (correctHeading+10)){
