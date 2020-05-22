@@ -52,11 +52,14 @@ class Destination2 : AppCompatActivity() {
 
 
 
+
+
         //Switch
         mListView.setOnItemClickListener {
                 adapterView, view, i, l ->
             if (i == 0) {
                 distance = 100
+
                 val toast = Toast.makeText(
                     this,
                     locations[i]+"\t\t=\t\t"+distance+"  meters",
@@ -136,22 +139,22 @@ class Destination2 : AppCompatActivity() {
                 toast.show()
             }
             if (i == 8) {
-                distance = 900
-                val toast = Toast.makeText(
-                    this,
-                    locations[i]+"\t\t=\t\t"+distance+"  meters",
-                    Toast.LENGTH_SHORT
-                )
-                toast.setGravity(Gravity.TOP, 0, 1280)
-                toast.show()
-            }
+                    distance = 900
+                    val toast = Toast.makeText(
+                        this,
+                        locations[i]+"\t\t=\t\t"+distance+"  meters",
+                        Toast.LENGTH_SHORT
+                    )
+                    toast.setGravity(Gravity.TOP, 0, 1280)
+                    toast.show()
+                }
         }
 
         // Click on OK button
         ok.setOnClickListener {
-            if (distance !== 0){
-                val intent2 = Intent(this, MenuActivity::class.java)
-                intent.putExtra("toMenu", distance)
+            if (distance !==0){
+                val intent2 = Intent(this, activity_automatic::class.java)
+                intent2.putExtra("toAutomatic", distance)
                 startActivity(intent2)
             } else {
                 Toast.makeText(this@Destination2, "Please select a destination", Toast.LENGTH_SHORT)

@@ -220,8 +220,9 @@ class activity_automatic : AppCompatActivity() {
         val back = findViewById(R.id.toManual) as ImageButton
 
         back.setOnClickListener {
-            val back = Intent(this, MenuActivity::class.java)
-            back.putExtra("toMenufordistance", distance())
+            val back = Intent(this, Destination2::class.java)
+            // the below was to keep the information in the menu but that turned to be not important
+            // back.putExtra("toMenufordistance", distance())
             startActivity(back)
         }
 
