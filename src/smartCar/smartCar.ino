@@ -7,8 +7,8 @@
 #include <ESPmDNS.h>
 
 //VARIABLES FOR WEBSERVER
-const char* ssid = "Yake";
-const char* password = "403ccad8";
+const char* ssid = "";
+const char* password = "";
 WebServer server(12345);
 WiFiClient client;
 String header;
@@ -18,8 +18,8 @@ const int FRONT_TRIGGER_PIN = 4;
 const int FRONT_ECHO_PIN = 2; 
 
 //Variables for statistics
-int originalDistance = 200;
-int distanceToDrive = originalDistance;
+int originalDistance = 0;
+int distanceToDrive = 0;
 int correctHeadingDriven = 0;
 int incorrectHeadingDriven = 0;
 int correctHeading = 0;
@@ -55,7 +55,10 @@ void setup()
     //The speed of the car is in m/s.
     car.enableCruiseControl();
 
+    //Get the initial heading of the car on setup
     correctHeading = gyroscope.getHeading();
+
+    car.setSpeed(CURRENT_SPEED);
 
     //Setup the webserver
     webserverInit();
@@ -64,37 +67,43 @@ void setup()
 void loop()
 {
     car.update();
+    gyroscope.update();
     
     if(controllerMode == false){
       automatedControl();
     }
 
+    Serial.println(CURRENT_SPEED);
+    
+    //Initialize the pin
     pinMode(LED_BUILTIN, OUTPUT);
     
     //Update the webserver
     webserverCreation();
 
+    //Check if destination has been reached
     checkDestination();
 }
 
 //Automated controls (WIP - Work in Progress)
 void automatedControl(){
   
- //Get distance of the obstacle
+  //Get distance of the obstacle
   int distance = front_sensor.getDistance();
-  Serial.println(distance);
+  
   //Turn on the LED at when the obstacle is within a pre-determined distance
   if(distance <= 60 && distance != 0){
     digitalWrite(LED_BUILTIN, HIGH);
   }
+  
   //Functionality to gradually increase speed
   //as well as go back if the object comes closer
   if(distance <= 5 && distance != 0){
-    CURRENT_SPEED = -0.75;
+    CURRENT_SPEED = -1.5;
   }else if(distance <= 10 && distance != 0){
-    CURRENT_SPEED = -0.5;
+    CURRENT_SPEED = -1;
   }else if(distance <= 15 && distance != 0){
-    CURRENT_SPEED = -0.25;
+    CURRENT_SPEED = -0.5;
   }else if(distance <= 20 && distance != 0){
     CURRENT_SPEED = 0;
   }else if(distance <= 60 && distance != 0){
@@ -105,6 +114,7 @@ void automatedControl(){
     CURRENT_SPEED = HIGH_SPEED;
     digitalWrite(LED_BUILTIN, LOW);
   }
+  
   //Set the speed so the car moves forward
   car.setSpeed(CURRENT_SPEED);
 }
@@ -124,7 +134,7 @@ void webserverInit() {
   //mDNS - connect with https://smartcar.local:12345
   if(!MDNS.begin("smartcar")){
     Serial.println("Error! mDNS has not been set up.");
-  }else{
+  }else{  
     Serial.println("mDNS has been setup");
   }
 
@@ -182,7 +192,6 @@ void handle_OnDisconnect(){
 void forwardEndpoint(){
   car.setSpeed(CURRENT_SPEED);
   server.send(200, "text/html", sendHTML('f'));
-  Serial.println("for");
 }
 
 void backwardEndpoint(){
@@ -201,39 +210,44 @@ void turnRightEndpoint(){
 }
 
 void resetAngle(){
+  server.send(200, "text/html", sendHTML('\0'));
   car.setAngle(0);
 }
 
 void distanceSubmitted(){
-  distanceToDrive = server.arg(0).toInt();
+  originalDistance = server.arg(0).toInt();
+  distanceToDrive = originalDistance;
 }
 
 void sendInfo(){
   int speedNow = car.getSpeed();
-  int distanceNow = distanceToDrive;
-  server.send(200, "text/plain", speedNow+"/"+distanceNow);
+  String speedString = String(speedNow);
+  String distanceString = String(distanceToDrive);
+  String result = speedString + "/" + distanceString;
+  server.send(200, "text/plain", result);
 }
 
 void stopCar(){
+  server.send(200, "text/html", sendHTML('\0'));
   CURRENT_SPEED = LOW_SPEED;
   car.setSpeed(0);
   car.setAngle(0);
-  Serial.println("STOP");
 }
 
 void increaseSpeed(){
+  server.send(200, "text/html", sendHTML('\0'));
   CURRENT_SPEED += 0.1;
   car.setSpeed(CURRENT_SPEED);
 }
 
 void decreaseSpeed(){
+  server.send(200, "text/html", sendHTML('\0'));
   CURRENT_SPEED -= 0.1;
   car.setSpeed(CURRENT_SPEED);
 }
 
 void setGear(){
   int gear = server.arg(0).toInt();
-  Serial.println(gear);
 
   if (gear == 1){
     CURRENT_SPEED = LOW_SPEED;
@@ -243,14 +257,18 @@ void setGear(){
     CURRENT_SPEED = HIGH_SPEED;
   }
 
+  car.setSpeed(CURRENT_SPEED);
+
   server.send(200, "text/html", sendHTML('g'));
 }
 
 void turnOnAutomation(){
+  server.send(200, "text/html", sendHTML('\0'));
   controllerMode = false;
 }
 
 void turnOffAutomation(){
+  server.send(200, "text/html", sendHTML('\0'));
   controllerMode = true;
 }
 
