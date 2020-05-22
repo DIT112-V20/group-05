@@ -18,11 +18,11 @@ const int FRONT_TRIGGER_PIN = 4;
 const int FRONT_ECHO_PIN = 2; 
 
 //Variables for statistics
-int originalDistance = 0;
-int distanceToDrive = 0;
-int correctHeadingDriven = 0;
-int incorrectHeadingDriven = 0;
-int correctHeading = 0;
+int originalDistance;
+int distanceToDrive;
+int correctHeadingDriven;
+int incorrectHeadingDriven;
+int correctHeading;
 
 //SMARTCAR VARIABLES
 const unsigned int FRONT_MAX_DISTANCE = 100;
