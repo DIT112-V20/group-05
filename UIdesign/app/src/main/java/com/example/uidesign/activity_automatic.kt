@@ -232,7 +232,7 @@ class activity_automatic : AppCompatActivity() {
         handler.postDelayed(object : Runnable {
             override fun run() {
 
-                cm.setText(data.getDistance()+" Cm")
+                cm.setText(data.findDistance()+" Cm")
 
                 handler.postDelayed(this, 500)
             }
@@ -242,7 +242,7 @@ class activity_automatic : AppCompatActivity() {
         handler.postDelayed(object : Runnable {
             override fun run() {
 
-                speedS.setText(data.getSpeed()+" Cm/Sec")
+                speedS.setText(data.findSpeed()+" Cm/Sec")
 
                 handler.postDelayed(this, 500)
             }
