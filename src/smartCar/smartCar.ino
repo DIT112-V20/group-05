@@ -1,7 +1,4 @@
 #include <Smartcar.h>
-#include <BluetoothSerial.h>
-#include <iostream>
-#include <HTTP_Method.h>
 #include <WebServer.h>
 #include <WiFi.h>
 #include <ESPmDNS.h>
@@ -15,7 +12,7 @@ String header;
 
 //PINS
 const int FRONT_TRIGGER_PIN = 4; 
-const int FRONT_ECHO_PIN = 2; 
+const int FRONT_ECHO_PIN = 16; 
 
 //Variables for statistics
 int originalDistance;
@@ -78,7 +75,7 @@ void loop()
     webserverCreation();
 
     //Check if destination has been reached
-    //checkDestination();
+    checkDestination();
 }
 
 //Automated controls (WIP - Work in Progress)
@@ -146,7 +143,6 @@ void webserverInit() {
   server.on("/autoOff", turnOffAutomation);
   server.on("/AutoOn", turnOnAutomation);
   server.on("/setGear", setGear);
-  server.on("/sensor", sensorEndpoint);
   server.on("/stop", stopCar);
   server.on("/resetAngle", resetAngle);
   server.on("/increase", increaseSpeed);
@@ -272,10 +268,6 @@ void destinationReached(){
   String result;
   
   server.send(200, "text/plain", result);
-}
-
-void sensorEndpoint(){
-  server.send(200, "text/plain", String(front_sensor.getDistance()));
 }
 
 String sendHTML(char message) {
