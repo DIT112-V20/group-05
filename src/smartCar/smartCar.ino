@@ -212,7 +212,7 @@ void distanceSubmitted(){
 }
 
 void sendInfo(){
-  int speedNow = car.getSpeed();
+  double speedNow = car.getSpeed();
   String speedString = String(speedNow);
   String distanceString = String(distanceToDrive);
   String result = speedString + "/" + distanceString;
