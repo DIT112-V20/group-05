@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         setting.setOnClickListener {
             val intent = Intent(this, Settings::class.java)
+            intent.putExtra("toSettings", offapp)
             startActivity(intent)
         }
 
