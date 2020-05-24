@@ -71,24 +71,23 @@ android:layout_centerHorizontal="true"
 
         android:textSize="25dp" />
 
+
     <Button
         android:id="@+id/Disconnect"
         android:layout_width="260dp"
         android:layout_height="81dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginLeft="80dp"
+        android:layout_alignBottom="@+id/Connect"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="80dp"
         android:layout_marginBottom="-130dp"
         android:background="@drawable/colorchange"
         android:fontFamily="sans-serif-black"
         android:text="@string/Disconnect"
         android:textAllCaps="false"
         android:textColor="#BB070707"
-        android:textSize="25dp"
 
 
-        />
-
+        android:textSize="25dp" />
 
     <Button
         android:id="@+id/getstarted"
@@ -96,7 +95,7 @@ android:layout_centerHorizontal="true"
         android:layout_height="81dp"
         android:background="@drawable/colorchange"
         android:fontFamily="sans-serif-black"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
         android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"
         android:text="@string/Enter"
