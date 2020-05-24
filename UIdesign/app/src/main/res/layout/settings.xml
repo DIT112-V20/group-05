@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F7292E37"
+    tools:context=".Settings">
+
+    <ImageButton
+
+        android:id="@+id/back"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/back"/>
+
+    <EditText
+        android:id="@+id/ip"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:hint="Enter IP"
+        android:inputType="numberDecimal"
+        android:digits="0123456789."
+        android:singleLine="true"
+        android:textColor="#FAF9F9"
+        android:textColorHint="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/port"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:hint="Enter PORT"
+        android:inputType="numberDecimal"
+        android:digits="0123456789."
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF" />
+
+
+    <Button
+        android:id="@+id/submit"
+        android:text="SUBMIT"
+        android:background="@drawable/colorchange"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="370dp"
+        android:layout_width="100dp"
+        android:layout_height="60dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginRight="40dp"
+        android:text="Note: Port Forwarding needs to be enabled in order to connect to the car when a different network is used."
+        android:textColor="#FF9800"
+        android:textSize="18dp" />
+
+
+
+</RelativeLayout>

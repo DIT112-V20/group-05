@@ -34,6 +34,15 @@ class MainActivity : AppCompatActivity() {
         var start = findViewById(R.id.getstarted) as Button;
 
 
+		var setting = findViewById(R.id.setting) as ImageButton;
+
+
+        setting.setOnClickListener {
+            val intent = Intent(this, Settings::class.java)
+            startActivity(intent)
+        }
+
+
         fun getMyVariableAgain(): Int {
             if (intent != null) {
                 if (intent.extras != null) {

@@ -13,9 +13,23 @@ import android.preference.PreferenceManager
 class RequestHandler(val mContext: Context) {
 
 
+	companion object{
+		var ip = "213.80.116.220"
+		var port = "12345"
+	}
+	
+	fun changeIp(newIp : String){
+		ip = newIp
+	}
+	
+	fun changePort(newPort : String){
+		port = newPort
+	}
+
+
     fun sendRequest(endpoint : String){
         val queue: RequestQueue = VolleySingleton.getInstance(mContext).requestQueue
-        val url = "http://213.80.116.220:12345/$endpoint"
+        val url = "http://$ip:$port/$endpoint"
         val stringRequest =
             StringRequest(Request.Method.GET, url, object : Response.Listener<String?> {
                 override fun onResponse(response: String?) {
@@ -38,7 +52,7 @@ class RequestHandler(val mContext: Context) {
 
     fun getRequest(endpoint : String){
         val queue: RequestQueue = VolleySingleton.getInstance(mContext).requestQueue
-        val url = "http://213.80.116.220:12345/$endpoint"
+        val url = "http://$ip:$port/$endpoint"
         val stringRequest =
             StringRequest(Request.Method.GET, url, object : Response.Listener<String?> {
                 override fun onResponse(response: String?) {
