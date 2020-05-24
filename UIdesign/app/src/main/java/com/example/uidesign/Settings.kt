@@ -34,5 +34,26 @@ class Settings : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+
+        // get previous light
+
+        fun getMyVariable(): Int {
+            if (intent != null) {
+                if (intent.extras != null) {
+                    return intent.extras!!.getInt("toSettings")
+                }
+            }
+            return 109 // default
+        }
+
+        // Click on back button and preserve the connection light of past screen (unlike the submit that needs a connect to make it green again)
+        back.setOnClickListener {
+            val home = Intent(this, MainActivity::class.java)
+            home.putExtra("BackVariable2", getMyVariable())
+            startActivity(home)
+
+        }
+
     }
 }
