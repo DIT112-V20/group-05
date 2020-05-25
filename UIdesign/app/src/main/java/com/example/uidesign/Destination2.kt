@@ -21,6 +21,8 @@ class Destination2 : AppCompatActivity() {
         val home = findViewById(R.id.home) as ImageButton
         val mListView = findViewById(R.id.list) as ListView
         val searchBar = findViewById(R.id.searchBox) as SearchView
+        val request = RequestHandler(applicationContext)
+
 
         // List and adapter
         val arrayAdapter: ArrayAdapter<*>
@@ -154,6 +156,7 @@ class Destination2 : AppCompatActivity() {
         ok.setOnClickListener {
             if (distance !==0){
                 val intent2 = Intent(this, activity_automatic::class.java)
+                request.sendRequest("endpoint?"+ distance)
                 intent2.putExtra("toAutomatic", distance)
                 startActivity(intent2)
             } else {
