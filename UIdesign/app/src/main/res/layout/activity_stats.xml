@@ -10,6 +10,50 @@
     android:background="#292E37"
     tools:context=".ManualActivity2">
 
+    <EditText
+        android:id="@+id/actualdriven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginRight="30dp"
+        android:focusableInTouchMode="false"
+        android:textColor="#BBFFFFFF"
+        android:ems="10"
+        android:hint="m"
+        android:inputType="number"
+        android:textColorHint="#BBFFFFFF" />
+
+
+    <EditText
+        android:id="@+id/estimated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="210dp"
+        android:layout_marginRight="30dp"
+        android:focusableInTouchMode="false"
+        android:textColor="#BBFFFFFF"
+        android:ems="10"
+        android:hint="m"
+        android:inputType="number"
+        android:textColorHint="#BBFFFFFF" />
+
+    <EditText
+        android:id="@+id/percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="370dp"
+        android:layout_marginRight="30dp"
+        android:focusableInTouchMode="false"
+        android:textColor="#BBFFFFFF"
+        android:ems="10"
+        android:hint="%"
+        android:inputType="number"
+        android:textColorHint="#BBFFFFFF" />
+
+
 
     <ImageButton
 
@@ -83,28 +127,13 @@
     <Button
         android:id="@+id/actualCost"
         android:layout_width="383dp"
-        android:layout_height="74dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="440dp"
-        android:background="@drawable/statslayout"
-        android:fontFamily="sans-serif-black"
-        android:rotation="0"
-        android:text="Actual Cost: "
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textColor="#BBFFFFFF"
-        android:textSize="25dp" />
-
-    <Button
-        android:id="@+id/estimatedCost"
-        android:layout_width="383dp"
         android:layout_height="66dp"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="360dp"
         android:background="@drawable/statslayout"
         android:fontFamily="sans-serif-black"
         android:rotation="0"
-        android:text="Estimated Cost: "
+        android:text="Atcual Cost: "
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="#BBFFFFFF"

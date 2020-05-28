@@ -25,6 +25,7 @@ class automaticfrommanual : AppCompatActivity() {
         val speedS=findViewById(R.id.editTextSpeed2)as EditText
         val manual = findViewById(R.id.test2) as Button
         val backtoDestination = findViewById(R.id.toDestination2) as ImageButton
+        val request = RequestHandler(applicationContext)
 
 
 
@@ -42,6 +43,7 @@ class automaticfrommanual : AppCompatActivity() {
         // go to destination to pick a new destination
 
         backtoDestination.setOnClickListener {
+            request.sendRequest("reached")
             val back = Intent(this, Destination2::class.java)
             startActivity(back)
         }
@@ -53,7 +55,7 @@ class automaticfrommanual : AppCompatActivity() {
 
 
         Statistics.setOnClickListener {
-            val intentback = Intent(this, Stats::class.java)
+            val intentback = Intent(this, Destination2::class.java)
             startActivity(intentback)
         }
 
@@ -64,6 +66,7 @@ class automaticfrommanual : AppCompatActivity() {
         manual.setOnClickListener {
             val intentreal = Intent(this,ManualActivity2::class.java)
             intentreal.putExtra("toManual", distance())
+            request.sendRequest("autoOff")
             startActivity(intentreal)
         }
 

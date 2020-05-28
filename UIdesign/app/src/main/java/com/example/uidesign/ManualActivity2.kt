@@ -46,7 +46,7 @@ class ManualActivity2 : AppCompatActivity() {
 
 
         Statistics.setOnClickListener {
-            val intentback = Intent(this, Stats::class.java)
+            val intentback = Intent(this, Destination2::class.java)
             startActivity(intentback)
         }
 

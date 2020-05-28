@@ -156,7 +156,7 @@ class Destination2 : AppCompatActivity() {
         ok.setOnClickListener {
             if (distance !==0){
                 val intent2 = Intent(this, activity_automatic::class.java)
-                request.sendRequest("endpoint?"+ distance)
+                request.sendRequest("AutoOn?distance=" + distance)
                 intent2.putExtra("toAutomatic", distance)
                 startActivity(intent2)
             } else {
