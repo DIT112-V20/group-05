@@ -143,6 +143,7 @@ void webserverInit() {
   server.on("/AutoOn", turnOnAutomation);
   server.on("/setGear", setGear);
   server.on("/stop", stopCar);
+  server.on("/reached", destReached);
   server.on("/resetAngle", resetAngle);
   server.on("/increase", increaseSpeed);
   server.on("/decrease", decreaseSpeed);
@@ -228,6 +229,12 @@ void increaseSpeed(){
 void decreaseSpeed(){
   server.send(200, "text/html", sendHTML('\0'));
   CURRENT_SPEED -= 0.1;
+  car.setSpeed(CURRENT_SPEED);
+}
+
+void destReached(){
+  controllerMode = true;
+  CURRENT_SPEED = 0;
   car.setSpeed(CURRENT_SPEED);
 }
 
