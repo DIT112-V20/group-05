@@ -4,8 +4,8 @@
 #include <ESPmDNS.h>
 
 //VARIABLES FOR WEBSERVER
-const char* ssid = "";
-const char* password = "";
+const char* ssid = "Yake";
+const char* password = "403ccad8";
 WebServer server(12345);
 WiFiClient client;
 String header;
@@ -27,7 +27,7 @@ SR04 front_sensor(FRONT_TRIGGER_PIN, FRONT_ECHO_PIN, FRONT_MAX_DISTANCE);
 BrushedMotor leftMotor(smartcarlib::pins::v2::leftMotorPins);
 BrushedMotor rightMotor(smartcarlib::pins::v2::rightMotorPins);
 DifferentialControl control(leftMotor, rightMotor);
-GY50 gyroscope(2);
+GY50 gyroscope(-1);
 const auto pulsesPerMeter = 600;
 DirectionlessOdometer leftOdometer(
     smartcarlib::pins::v2::leftOdometerPin, []() { leftOdometer.update(); }, pulsesPerMeter);
@@ -75,7 +75,7 @@ void loop()
     webserverCreation();
 
     //Check if destination has been reached
-    checkDestination();
+    //checkDestination();
 }
 
 //Automated controls (WIP - Work in Progress)
@@ -139,7 +139,6 @@ void webserverInit() {
   server.on("/backward", backwardEndpoint);
   server.on("/turnLeft", turnLeftEndpoint);
   server.on("/turnRight", turnRightEndpoint);
-  server.on("/submit", distanceSubmitted);
   server.on("/autoOff", turnOffAutomation);
   server.on("/AutoOn", turnOnAutomation);
   server.on("/setGear", setGear);
@@ -147,7 +146,6 @@ void webserverInit() {
   server.on("/resetAngle", resetAngle);
   server.on("/increase", increaseSpeed);
   server.on("/decrease", decreaseSpeed);
-  server.on("/destinationReached", destinationReached);
   server.on("/sendInfo", sendInfo);
 
   //Print local IP address to the serial monitor and start the web server
@@ -206,11 +204,6 @@ void resetAngle(){
   car.setAngle(0);
 }
 
-void distanceSubmitted(){
-  originalDistance = server.arg(0).toInt();
-  distanceToDrive = originalDistance;
-}
-
 void sendInfo(){
   double speedNow = car.getSpeed();
   String speedString = String(speedNow);
@@ -257,17 +250,13 @@ void setGear(){
 void turnOnAutomation(){
   server.send(200, "text/html", sendHTML('\0'));
   controllerMode = false;
+  originalDistance = server.arg(0).toInt();
+  distanceToDrive = originalDistance;
 }
 
 void turnOffAutomation(){
   server.send(200, "text/html", sendHTML('\0'));
   controllerMode = true;
-}
-
-void destinationReached(){
-  String result;
-  
-  server.send(200, "text/plain", result);
 }
 
 String sendHTML(char message) {
@@ -304,7 +293,10 @@ String sendHTML(char message) {
   return html;
 }
 
-void checkDestination(){
+
+//This code should have worked in theory
+//But the gyro heading did not function properly and we ran out of time to fix it.
+/*void checkDestination(){
   
   if(correctHeadingDriven == distanceToDrive){
     CURRENT_SPEED = 0;
@@ -319,4 +311,4 @@ void checkDestination(){
     incorrectHeadingDriven = car.getDistance() - correctHeadingDriven;
     distanceToDrive = originalDistance + incorrectHeadingDriven;
   }
-}
+  */
