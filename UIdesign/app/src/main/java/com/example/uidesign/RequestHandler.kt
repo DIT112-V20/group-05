@@ -14,7 +14,7 @@ class RequestHandler(val mContext: Context) {
 
 
 	companion object{
-		var ip = "213.80.116.220"
+		var ip = "192.168.43.199"
 		var port = "12345"
 	}
 	
@@ -37,12 +37,11 @@ class RequestHandler(val mContext: Context) {
                         mContext,
                         "Command was successful !",
                         Toast.LENGTH_LONG
-                    ).show()
+                    )
                 }
             }, object : Response.ErrorListener {
                 override fun onErrorResponse(error: VolleyError?) {
                     Toast.makeText(mContext, "Error occurred", Toast.LENGTH_LONG)
-                        .show()
                 }
             })
         queue.add(stringRequest)
@@ -67,8 +66,8 @@ class RequestHandler(val mContext: Context) {
                 }
             }, object : Response.ErrorListener {
                 override fun onErrorResponse(error: VolleyError?) {
-                    Toast.makeText(mContext, "Error occurred", Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(mContext, "ERROR", Toast.LENGTH_LONG)
+
                 }
             })
         queue.add(stringRequest)

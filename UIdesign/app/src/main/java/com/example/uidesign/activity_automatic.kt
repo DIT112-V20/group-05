@@ -21,6 +21,7 @@ class activity_automatic : AppCompatActivity() {
         setContentView(R.layout.activity_automatic)
 
         val data : Data = Data(applicationContext)
+        val request = RequestHandler(applicationContext)
 
 
         val distanceLeft =findViewById(R.id.DistanceLeft)as Button
@@ -195,7 +196,8 @@ class activity_automatic : AppCompatActivity() {
 
 
         Statistics.setOnClickListener {
-            val intentback = Intent(this, Stats::class.java)
+            request.sendRequest("reached")
+            val intentback = Intent(this, Destination2::class.java)
             startActivity(intentback)
         }
 
@@ -207,6 +209,7 @@ class activity_automatic : AppCompatActivity() {
         manual.setOnClickListener {
             val intentreal = Intent(this,ManualActivity2::class.java)
             intentreal.putExtra("toManual", distance())
+            request.sendRequest("autoOff")
             startActivity(intentreal)
         }
 
@@ -232,8 +235,8 @@ class activity_automatic : AppCompatActivity() {
         handler.postDelayed(object : Runnable {
             override fun run() {
 
-                cm.setText(data.findDistance()+" Cm")
-                speedS.setText(data.findSpeed()+ "Cm")
+                cm.setText(data.findDistance()+" m")
+                speedS.setText(data.findSpeed()+ "m/s")
                 handler.postDelayed(this, 500)
             }
         }, 500)

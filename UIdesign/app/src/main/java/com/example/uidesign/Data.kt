@@ -25,7 +25,7 @@ class Data constructor(val context : Context) {
         if (parts != null) {
             speed  = parts.get(0)
             distance  = parts.get(1)
-            
+
 
         }
     }
@@ -41,5 +41,7 @@ class Data constructor(val context : Context) {
         request.getRequest("sendInfo")
         return distance
     }
+
+
 }
 
