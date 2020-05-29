@@ -12,14 +12,14 @@ Whilst in automatic mode, the car will stop before an obstacle and an LED attach
 The car starts in automatic mode and travels towards a chosen destination. If prompted, the car will switch over to manual mode to let the user control the car through the application.<br/>
 The user could either wait for the obstacle to move or switch to manual mode and maneuver around the obstacle.
 # Software and hardware architecture;
-The three main components of the system are; the car, a web server, and the application. The web server is responsible for the communication and sending data between the car and the application.
+The three main components of the system are; the car, a web server, and the application. The web server is responsible for the communication and sending data between the car and the application.<br/>
 The hardware used for the smart car includes;<br/>
 1x Arduino Smart car attached with an ESP32 microcontroller<br/>
 1x HC-SR04 Ultrasonic sensor<br/>
 1x Breadboard<br/>
 8x AA batteries<br/>
-Wires
-The code for the car is written with the Arduino IDE which is based on C++. It uses the Smart car shield library for the vehicle itself and the WebServer library for the webserver.
+Wires<br/>
+The code for the car is written with the Arduino IDE which is based on C++. It uses the Smart car shield library for the vehicle itself and the WebServer library for the webserver.<br/>
 The application is written using Android Studio with Kotlin as the chosen language.
 # Get started!
 Download the repository: https://github.com/DIT112-V20/group-05 <br/><br/>
