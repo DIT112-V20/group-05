@@ -4,8 +4,8 @@
 #include <ESPmDNS.h>
 
 //VARIABLES FOR WEBSERVER
-const char* ssid = "Yake";
-const char* password = "403ccad8";
+const char* ssid = "";
+const char* password = "";
 WebServer server(12345);
 WiFiClient client;
 String header;
