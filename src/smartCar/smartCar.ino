@@ -62,7 +62,6 @@ void setup()
 void loop()
 {
     car.update();
-    gyroscope.update();
     
     if(controllerMode == false){
       automatedControl();
@@ -73,9 +72,6 @@ void loop()
     
     //Update the webserver
     webserverCreation();
-
-    //Check if destination has been reached
-    //checkDestination();
 }
 
 //Automated controls (WIP - Work in Progress)
@@ -299,23 +295,3 @@ String sendHTML(char message) {
 
   return html;
 }
-
-
-//This code should have worked in theory
-//But the gyro heading did not function properly and we ran out of time to fix it.
-/*void checkDestination(){
-  
-  if(correctHeadingDriven == distanceToDrive){
-    CURRENT_SPEED = 0;
-    car.setSpeed(CURRENT_SPEED);
-  }
-    
-  int currentHeading = gyroscope.getHeading();
-
-  if(currentHeading > (correctHeading-10) && currentHeading < (correctHeading+10)){
-    correctHeadingDriven = car.getDistance() - incorrectHeadingDriven;
-  }else{
-    incorrectHeadingDriven = car.getDistance() - correctHeadingDriven;
-    distanceToDrive = originalDistance + incorrectHeadingDriven;
-  }
-  */
